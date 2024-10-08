@@ -1,0 +1,169 @@
+{
+  "main": {
+    "id": "b0a2806358b64d79",
+    "type": "split",
+    "children": [
+      {
+        "id": "6b25a0103dd93a42",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3c5a24aa968f6d43",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian.vimrc",
+                "staged": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c1c592eea6ba5b7c",
+    "type": "split",
+    "children": [
+      {
+        "id": "7cc4df91ff6e81df",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7b4de32149238f84",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "06ded13fc02bb2ab",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#우와",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c62cc5cd5c1f1cc9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d9550209b73305cc",
+    "type": "split",
+    "children": [
+      {
+        "id": "a9484d337ddc01de",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8f6f993e90d3bed2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "42e8ba576d9c28ab",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9e775715686b19d7",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "7083799f2ada60e5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "b8460bc3efe1c771",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "markdown-importer:마크다운 형식 가져오기 열기": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "3c5a24aa968f6d43",
+  "lastOpenFiles": [
+    "Obsidian/사용법 1.md",
+    "README - 복사본.md",
+    "Obsidian/사용법 2.md",
+    "무제 파일 1.md",
+    "무제 파일.md",
+    "Obsidian",
+    "Welcome.md",
+    "README.md",
+    "2024-10-08.md",
+    "무제 파일.canvas",
+    "Daliy",
+    "Javascript"
+  ]
+}
