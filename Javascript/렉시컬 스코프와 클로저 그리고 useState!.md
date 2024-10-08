@@ -86,7 +86,19 @@ console.log(counter()); // 3
 - `MakeCounter()` 함수가 호출되면 `count` 변수가 메모리에 생성되고, 반환된 함수는 이 변수를 계속 기억한다.
 - `counter()`를 호출할 때마다 `count`가 증가하는 것을 볼 수 있다.
 
-### 클로저의 활용을 보자.
+#### 클로저 사용 이유 ?
+
+자바스크립트 엔진은 렉시컬 환경에 의해 상위 스코프를 기억한다.
+항상 하위에서 상위 스코프 방향으로 검색하기 때문에 상위에서 하위 방향으로는 식별자를 검색할 수 없다.
+이러한 특성을 이용한 클로저는 상태를 안전하게 변경하고 유지하기 위해 사용한다.
+
+1. 🚀 클로저 사용 X
+
+```javascript
+```
+
+
+### 클로저의 다양한 활용
 
 1. **정보 은닉**: 클로저를 사용하면 변수를 외부에서 접근하지 못하도록 숨길 수 있다.
 	```javascript
@@ -127,6 +139,28 @@ console.log(counter()); // 3
 2. **디버깅 어려움**: 클로저를 사용할 때 변수의 생명주기가 복잡해져서 디버깅이 어려울 수 있다.
 ### 그러면 모든 함수가 클로저가 아녀?
 
+    
+
+### 클로저가 발생하는 경우
+
+클로저는 일반적으로 다음과 같은 경우에 발생해:
+
+javascript
+
+```javascript
+function outer() {
+  let outerVar = 'I am from outer';
+
+  return function inner() {
+    console.log(outerVar); // inner는 outerVar를 참조하고 있어
+  };
+}
+
+const innerFunc = outer(); // outer가 호출되면서 클로저 생성
+innerFunc(); // 'I am from outer'
+```
+
+- 여기서 `inner` 함수는 `outer` 함수의 변수를 기억하고 있으니까 클로저야.
 
 #### 참고
 [제로초 강의](https://www.youtube.com/watch?v=jVP4fFtSvsg)
