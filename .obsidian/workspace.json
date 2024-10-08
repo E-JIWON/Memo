@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "d9550209b73305cc",
@@ -142,7 +142,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,7 +157,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3c5a24aa968f6d43",
+  "active": "b8460bc3efe1c771",
   "lastOpenFiles": [
     "Obsidian/사용법 1.md",
     "README - 복사본.md",
