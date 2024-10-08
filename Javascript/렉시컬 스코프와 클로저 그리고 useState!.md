@@ -83,8 +83,50 @@ console.log(counter()); // 1
 console.log(counter()); // 2
 console.log(counter()); // 3
 ```
-- MakeCounter() 함수가 호출되면 cout 변수가 메모리에 생성되고, 반환된 함수는 이 변수를 계속 기억한다.
-- counter()를 호출할 때마다 count가 증가하는 것ㅇ
+- `MakeCounter()` 함수가 호출되면 `count` 변수가 메모리에 생성되고, 반환된 함수는 이 변수를 계속 기억한다.
+- `counter()`를 호출할 때마다 `count`가 증가하는 것을 볼 수 있다.
+
+### 클로저의 활용을 보자.
+
+1. **정보 은닉**: 클로저를 사용하면 변수를 외부에서 접근하지 못하도록 숨길 수 있다.
+	```javascript
+	function secret() {
+	let secretValue = '숨겨진 값';
+	  
+	  return function() {
+		return secretValue; // 외부에서 접근할 수 없음
+	  };
+	}
+
+	const getSecret = secret();
+	console.log(getSecret()); // 숨겨진 값
+	```
+    
+2. **다양한 상태 관리**: 여러 개의 클로저를 사용하여 각각의 상태를 독립적으로 관리
+    ```javascript
+    function createUser(name) {
+      return {
+        getName: function() {
+          return name;
+        },
+        setName: function(newName) {
+          name = newName;
+        },
+      };
+    }
+    
+    const user1 = createUser('Alice');
+    console.log(user1.getName()); // Alice
+    user1.setName('Bob');
+    console.log(user1.getName()); // Bob
+    ```
+    
+### 클로저의 단점
+
+1. **메모리 누수**: 클로저가 너무 많은 변수를 기억하면 메모리 사용량이 증가할 수 있다.
+2. **디버깅 어려움**: 클로저를 사용할 때 변수의 생명주기가 복잡해져서 디버깅이 어려울 수 있다.
+### 그러면 모든 함수가 클로저가 아녀?
+
 
 #### 참고
 [제로초 강의](https://www.youtube.com/watch?v=jVP4fFtSvsg)
