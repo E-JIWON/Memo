@@ -134,4 +134,6 @@ console.log(counter()); // 3
 [재능 넷](https://www.jaenung.net/tree/1560)
 [damagucci-juice님 티스토리 글](https://damagucci-juice.tistory.com/entry/8%EC%9D%BC%EC%B0%A8-%ED%81%B4%EB%A1%9C%EC%A0%80)
 [클로저 프로그래밍의 즐거움 책..](https://www.yes24.com/Product/Goods/24555451)
+[블로그보다 쉽게 알려주시는 라매개발자님](https://www.youtube.com/watch?v=LL0DGc5pg7A)
+
 
