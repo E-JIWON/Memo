@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Javascript/렉시컬 스코프와 클로저 그리고 useState!.md",
+                "file": "Javascript/클로저.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Javascript/렉시컬 스코프와 클로저 그리고 useState!.md",
+                "file": "Javascript/클로저.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Javascript/렉시컬 스코프와 클로저 그리고 useState!.md",
+                "file": "Javascript/클로저.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Javascript/렉시컬 스코프와 클로저 그리고 useState!.md"
+                "file": "Javascript/클로저.md"
               }
             }
           },
@@ -185,7 +185,7 @@
   "active": "3858ff5e390b0eab",
   "lastOpenFiles": [
     "HTML/시멘틱 마크업.md",
-    "Javascript/렉시컬 스코프와 클로저 그리고 useState!.md",
+    "Javascript/클로저.md",
     "Obsidian/사용법 1.md",
     "HTML",
     "README - 복사본.md",
