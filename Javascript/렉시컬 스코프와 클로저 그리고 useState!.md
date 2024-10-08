@@ -54,14 +54,42 @@ wrapper();
 - 🌚 이 과정에서 스코프가 연결되어 체인처럼 동작하여 스코프 체인이라 한다 🌚
 
 # 💡드디어 클로저를 이해해보자.
-쉽게 설명하고싶다
 
-클로저는 함수와 그 함수가 선언될 때의 환경이 함께 기억되는 구조다.
+저를 위해 쉽게 적고 싶지만 쉽지가 않다...
+### **클로저의 정의**부터 알아보자.
+클로저는 함수와 그 함수가 생성될 때의 **렉시컬 환경의 조합!** 쉽게말해, 내부 함수가 외부 함수의 변수에 접근할 수 있는 상태를 말한다. 이 덕분에 내부 함수는 외부 함수의 스코프에 있는 변수를 기억하고 사용할 수 있다.
 
-클로저는 함수와 그 함수가 선언될 때의 환경이 함께 기억되는 구조를 말합니다. 이는 특히 내부 함수가 외부 함수의 변수를 참조할 때 중요합니다.
+### 클로저의 작동 원리
 
+1. **변수의 생명주기**: 외부 함수가 실행되면 그 함수의 변수는 메모리에 저장되고, 외부 함수가 종료되어도 이 변수는 사라지지 않고 내부 함수가 계속 접근할 수 있다
+2. **상태 유지**: 클로저를 사용하면 함수의 상태를 유지할 수 있어. 예를 들어, **카운터**를 만들 때 유용하다
 
+### 🚀 클로저 예제 및 설명
+
+아래 예제를 통해 클로저의 작동 방식을 살펴보자.
+
+```javascript
+function makeCounter() {
+  let count = 0; // count는 makeCounter의 스코프에 속함
+  
+  return function() {
+    count++; // 내부 함수에서 count를 접근하고 증가시킴
+    return count;
+  };
+}
+
+const counter = makeCounter(); // counter는 클로저를 갖는 함수
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+```
+- MakeCounter() 함수가 호출되면 cout 변수가 메모리에 생성되고, 반환된 함수는 이 변수를 계속 기억한다.
+- counter()를 호출할 때마다 count가 증가하는 것ㅇ
 
 #### 참고
 [제로초 강의](https://www.youtube.com/watch?v=jVP4fFtSvsg)
 [poiemaweb](https://poiemaweb.com/js-scope#7-%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84)
+[재능 넷](https://www.jaenung.net/tree/1560)
+[damagucci-juice님 티스토리 글](https://damagucci-juice.tistory.com/entry/8%EC%9D%BC%EC%B0%A8-%ED%81%B4%EB%A1%9C%EC%A0%80)
+[클로저 프로그래밍의 즐거움 책..](https://www.yes24.com/Product/Goods/24555451)
+
