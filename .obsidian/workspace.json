@@ -182,7 +182,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "HTML/웹 접근성.md",
+                "file": "Obsidian/사용법 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -199,7 +199,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "HTML/웹 접근성.md",
+                "file": "Obsidian/사용법 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -222,7 +222,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "HTML/웹 접근성.md"
+                "file": "Obsidian/사용법 1.md"
               }
             }
           },
@@ -247,11 +247,8 @@
       "switcher:퀵 스위처 열기": false,
       "graph:그래프 뷰 열기": false,
       "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 데일리 노트 열기": false,
       "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "markdown-importer:마크다운 형식 가져오기 열기": false,
-      "obsidian-git:Open Git source control": false
+      "command-palette:명령어 팔레트 열기": false
     }
   },
   "active": "7b4de32149238f84",
