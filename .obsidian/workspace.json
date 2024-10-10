@@ -121,7 +121,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "React-Query.md",
+                "file": "React/React-Query.md",
                 "mode": "source",
                 "source": false
               }
@@ -142,11 +142,10 @@
             "id": "a1b332f00c013c84",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "React-Query.md",
-                "mode": "source",
-                "source": false
+                "file": ".obsidian/workspace.json",
+                "staged": false
               }
             }
           }
@@ -217,7 +216,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "React-Query.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -234,7 +232,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "React-Query.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -256,9 +253,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "React-Query.md"
-              }
+              "state": {}
             }
           },
           {
@@ -288,8 +283,8 @@
   },
   "active": "a1b332f00c013c84",
   "lastOpenFiles": [
+    "React/React-Query.md",
     "conflict-files-obsidian-git.md",
-    "React-Query.md",
     "AWS/AWS를 사용해보자.md",
     "AWS",
     "README.md",
