@@ -126,9 +126,31 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "7d921b7db009e418",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian/plugins/calendar/data.json",
+                "staged": true
+              }
+            }
+          },
+          {
+            "id": "a1b332f00c013c84",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian/community-plugins.json",
+                "staged": true
+              }
+            }
           }
         ],
-        "currentTab": 9
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -194,7 +216,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "React-Query.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -211,7 +232,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "React-Query.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -233,9 +253,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "React-Query.md"
-              }
+              "state": {}
             }
           },
           {
@@ -251,8 +269,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -264,10 +281,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c7a7f5bb2a812f19",
+  "active": "a1b332f00c013c84",
   "lastOpenFiles": [
-    "README.md",
+    "conflict-files-obsidian-git.md",
     "React-Query.md",
+    "AWS/AWS를 사용해보자.md",
+    "AWS",
+    "README.md",
     "React",
     "Obsidian/사용법 1.md",
     "Obsidian/사용법 2.md",
