@@ -142,10 +142,11 @@
             "id": "a1b332f00c013c84",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": ".obsidian/community-plugins.json",
-                "staged": true
+                "file": "React-Query.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -216,6 +217,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "React-Query.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -232,6 +234,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "React-Query.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -253,7 +256,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "React-Query.md"
+              }
             }
           },
           {
