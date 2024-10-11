@@ -28,7 +28,7 @@ npm i zustand
 
  `app/_module/store/themeStore.ts`
 ```ts
-import { ThemeType } from "@/app/_types/ThemeType";
+import { ThemeType } from "@/_types/ThemeType";
 import { create } from "zustand";  
 
 interface ThemeStore {
@@ -67,15 +67,14 @@ export default useThemeStore;
 import React from "react";
 import { cookies } from "next/headers";
 import ThemeDetector from "./ThemeDetector";
-import { ThemeType } from "@/app/_types/ThemeType";  
+import { ThemeType } from "@/_types/ThemeType";
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const serverCookie = cookies();
-  const themeCookie = (serverCookie.get("theme")?.value ?? "") as ThemeType;  
+  const themeCookie = (serverCookie.get("theme")?.value ?? "") as ThemeType;
 
   return <ThemeDetector defaultTheme={themeCookie}>{children}</ThemeDetector>;
-
-}; 
+};
 
 export default ThemeProvider;
 ```
@@ -90,8 +89,8 @@ detector란 '감시자' 라는 뜻입니다.
 "use client";
 
 import React, { useEffect, useState } from "react";
-import useThemeStore from "../../store/themeStore";
-import { ThemeType } from "@/app/_types/ThemeType";
+import useThemeStore from "@/_module/store/themeStore";
+import { ThemeType } from "@/_types/ThemeType";
 
 export default function ThemeDetector({
   defaultTheme,
@@ -117,7 +116,6 @@ export default function ThemeDetector({
 
   return <div className={themeStatus}>{children}</div>;
 }
-
 ```
 
 - 이 친구는 client에서 작동하는 녀석이라 `use client` 선언을 해줍시다,
@@ -141,7 +139,6 @@ npx tailwindcss init
 `tailwind.config.js`
 ```js
 import type { Config } from "tailwindcss";
-
 const config: Config = {
   content: [ ...생략 ],
   darkMode: "class",
@@ -153,13 +150,8 @@ const config: Config = {
         },
         dark: {
           bg: "#128390",
-        },
-      },
-    },
-  },
-  plugins: [],
+  ...생략,
 };
-
 export default config;
 ```
 - `darkMode : 'class'` 를 넣어줍시다!
@@ -194,47 +186,24 @@ export default config;
 import React from "react";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
-import useThemeStore from "../../store/themeStore";  
+import useThemeStore from "@/_module/store/themeStore";
 
 const ThemeButton = () => {
-
   const cookies = new Cookies();
-
   const { theme, toggleTheme } = useThemeStore();
 
-  
-
   useEffect(() => {
-
     cookies.set("theme", theme, { path: "/" });
-
   }, [theme]);
 
-  
-
   return (
-
     <button
-
-      className="py-4 px-12 text-2xl rounded-lg bg-light-bg text-black dark:bg-dark-bg dark:text-white "
-
-      onClick={() => {
-
-        toggleTheme();
-
-      }}
-
-    >
-
+      className="bg-light-bg text-black dark:bg-dark-bg dark:text-white"
+      onClick={() => { toggleTheme(); }}
+      >
       {theme ? theme : "Lading..."}
-
     </button>
-
   );
-
 };
-
-  
-
 export default ThemeButton;
 ```
