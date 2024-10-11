@@ -78,6 +78,45 @@ export default ThemeProvider;
 ```
 - `server`에서 쿠키를 읽고 `ThemeDetector`에서 초기 값을 알 수 있도록 전달해줍니다.
 
+### 3. 넘겨받은 쿠키를 `ThemeDetector` 에 적용해줍시다.
+detector란 '감시자' 라는 뜻입니다. 
+이녀석은 감시하는 놈입니다. 코드를 먼저 봅시다.
 
+```jsx
+"use client";
 
+import React, { useEffect, useState } from "react";
+import useThemeStore from "../../store/themeStore";
+import { ThemeType } from "@/app/_types/ThemeType";
 
+export default function ThemeDetector({
+  defaultTheme,
+  children,
+}: {
+  defaultTheme?: ThemeType;
+  children: React.ReactNode;
+}) {
+  const { theme, setTheme } = useThemeStore();
+  const [themeStatus, setThemeStatus] = useState(defaultTheme ?? "");
+
+  // 초기값이 비어있지 않을 경우 theme을 적용
+  useEffect(() => {
+    if (themeStatus !== "") setTheme(themeStatus);
+  }, []);
+
+  // 상태가 변경될 경우 테마 상태 업데이트
+  useEffect(() => {
+    if (theme) {
+      setThemeStatus(theme);
+    }
+  }, [theme]);
+
+  return <div className={themeStatus}>{children}</div>;
+}
+
+```
+
+- 이 친구는 client에서 작동하는 녀석이라 `use client` 선언을 해줍시다,
+- 초기에 `ThemeProvider` 에서 쿠키에 저장되어있는 `defaultTheme`를 넘겨받습니다.
+- `themeStatus` 상태변수를 만들어준 이유는. 서버 쿠키에서 넘어온 `defaultTheme` 를 적용하고, 후에 전역 상태인 `theme`가 변경될 경우 적용해주기 위해서 입니다.
+- 추가로 설명드리자면, useEffect에서 themeStatus가 비어있지 않을 경우에 해주는 이유
