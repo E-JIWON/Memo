@@ -12,32 +12,9 @@
 > 2. Tailwnd CSS
 > 3. zustand
 
-
-### 1. 프로바이더를 만들어줄겁니다.
-이유는 나중에 설명드리죠 !
-```tsx
-import React from "react";
-import { cookies } from "next/headers";
-import ThemeDetector from "./ThemeDetector";
-import { ThemeType } from "@/app/_types/ThemeType";  
-
-const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const serverCookie = cookies();
-  const themeCookie = (serverCookie.get("theme")?.value ?? "") as ThemeType;  
-
-  return <ThemeDetector defaultTheme={themeCookie}>{children}</ThemeDetector>;
-
-}; 
-
-export default ThemeProvider;
-```
-
-
-
-
-
-### 2. 전역 상태를 먼저 만들어 줍시다.
-전 프로젝트에서 `jotai`를 써봐서 `zustand`나 `redux`를 사용해보고 싶었습니다. 하지만 작은 프로젝트에 redux를 쓰기에는 기본 구조가 복잡하고(보일러플레이트 코드) `jotai`를 쓰기엔 복잡한 상태 로직을 변경하는게 별로여서 zustand로 설정했습니다.
+***
+### 1. 전역 상태를 먼저 만들어 줍시다.
+이전 프로젝트에서 `jotai`를 써봐서 `zustand`나 `redux`를 사용해보고 싶었습니다. 하지만 작은 프로젝트에 `redux`를 쓰기에는 기본 구조가 복잡하고(보일러플레이트 코드) `jotai`를 쓰기엔 복잡한 상태 로직을 변경하는게 별로여서 zustand로 설정했습니다.
 
 zustand가 없다면.... 설치를 해줍시다!
 ```bash
@@ -77,6 +54,29 @@ export default useThemeStore;
 ```
 
 이 코드는 전역 상태를 관리하는 zustand의 설정입니다. `setTheme`와 `toggleTheme`를 분리하여 각 함수의 역할을 명확하게 하고, 다크모드를 위한 상태 관리를 간편하게 해줍니다.
+***
+### 2. 프로바이더를 만들어줄겁니다.
+
+먼저 `ThemeProvider`를 생성하여 테마를 관리할 수 있는 환경을 설정할겁니다.
+서버에서 쿠키를 읽어 현재 테마를 결정하고, 이를 `ThemeDetector`에 전달합니다.
+
+```tsx
+import React from "react";
+import { cookies } from "next/headers";
+import ThemeDetector from "./ThemeDetector";
+import { ThemeType } from "@/app/_types/ThemeType";  
+
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const serverCookie = cookies();
+  const themeCookie = (serverCookie.get("theme")?.value ?? "") as ThemeType;  
+
+  return <ThemeDetector defaultTheme={themeCookie}>{children}</ThemeDetector>;
+
+}; 
+
+export default ThemeProvider;
+```
+- `server`에서 쿠키를 읽고 `ThemeDetector`에서 초기 값을 알 수 있도록 전달해줍니다.
 
 
 
