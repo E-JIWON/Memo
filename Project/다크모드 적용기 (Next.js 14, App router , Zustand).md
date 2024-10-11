@@ -17,6 +17,9 @@
 
 
 ### 1. 전역 상태를 먼저 만들어 줍시다.
+
+전 프로젝트에서 `jotai`를 썼는데, 
+
 zustand가 없다면.... 설치를 해줍시다!
 ```bash
 npm i zustand
@@ -53,5 +56,6 @@ const useThemeStore = create<ThemeStore>((set) => ({
   
 export default useThemeStore;
 ```
-저는 `toggle`이랑 `setTHeme`를 따로 두기로 했어요.
+코드를 설명드릴게요.
+- `setTheme` 와 `toggleTheme()` 를 따로 둔 이유는 두 함수의 역할을 명백하게 나누기 위해서였어요. 
 
