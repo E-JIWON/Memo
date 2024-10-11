@@ -3,8 +3,8 @@
 열받았던 게 부끄러울 정도로 초급자의 시선에서 바라본 글입니다. 이번 다크모드 프로젝트에서는 클라이언트와 서버 간의 데이터 흐름을 유지하면서 깜빡임(Flicker) 문제를 해결하는 데 중점을 두었습니다.
 
 > 😇 **Q: 아니 왜 Vercel에서 지원하는 next-themes를 사용하지 않았나요?**
->>
->**A:** Next-themes는 굉장히 쉽게 적용할 수 있었고, SSR 문제였던 깜빡임도 없었지만, 추후 복잡한 로직 관리나, 직접 만들어보는 보기 위해 적용해보았습니다. + SSR 문제 해결 능력 키우기 ?🌚
+>
+>**A:** Next-themes는 굉장히 쉽게 적용할 수 있었고, SSR 문제였던 깜빡임도 없었지만, 추후 복잡한 로직 관리나, 직접 만들어보는 보기 위해 적용해보았습니다. + SSR 문제 해결 능력 키우고 싶어서요. 🌚
 
 
 #### 적용 라이브러리
@@ -53,15 +53,15 @@ const useThemeStore = create<ThemeStore>((set) => ({
   
 export default useThemeStore;
 ```
+이 코드는 전역 상태를 관리하는 `zustand`의 설정입니다. `setTheme`와 `toggleTheme`를 분리하여 각 함수의 역할을 명확하게 하고, 다크모드를 위한 상태 관리를 간편하게 해줄겁니다.
 
-이 코드는 전역 상태를 관리하는 zustand의 설정입니다. `setTheme`와 `toggleTheme`를 분리하여 각 함수의 역할을 명확하게 하고, 다크모드를 위한 상태 관리를 간편하게 해줄겁니다.
 ***
-### 2. ### 프로바이더 만들기
+### 2. 프로바이더 만들기
 
 먼저 `ThemeProvider`를 생성하여 테마를 관리할 수 있는 환경을 설정할 것입니다.
 서버에서 쿠키를 읽고 `ThemeDetector`에 보내줄 겁니다.
 두 컴포넌트를 나눈 이유는 서버에서 쿠키를 읽는 것 `use server`이고, 
-client 에서도 설정이 필요한 경우가 있기에 `ThemeDetector` 로 서버 값을 보내준겁니다.
+클라이언트에서도 설정이 필요한 경우가 있기 때문입니다.
 
 `app/_module/provider/(theme)/ThemeProvider.tsx`
 ```tsx
@@ -81,7 +81,7 @@ export default ThemeProvider;
 ```
 - `server`에서 쿠키를 읽고 `ThemeDetector`에서 초기 값을 알 수 있도록 전달해줍니다.
 
-### 3. ### 넘겨받은 쿠키를 `ThemeDetector`에 적용하기
+### 3. 넘겨받은 쿠키를 `ThemeDetector`에 적용하기
 `Detector`는 '감시자'라는 뜻을 가지고 있습니다.
 이 녀석은 감시하는 놈입니다. 코드를 먼저 봅시다.
 
@@ -119,10 +119,10 @@ export default function ThemeDetector({
 }
 ```
 
-- 이 친구는 client에서 작동하는 녀석이라 `use client` 선언을 해줍시다,
+- 이 친구는 클라이언트에서 작동하는 녀석이라 `use client` 선언을 해줍시다,
 - `ThemeProvider` 에서 쿠키에 저장되어있는 `defaultTheme`를 넘겨 받습니다.
 - `themeStatus` 상태 변수를 만들어준 이유는. 서버 쿠키에서 넘어온 `defaultTheme` 를 적용하고, 후에 전역 상태인 `theme`가 변경될 경우 적용하기 위함입니다.
-- 추가적으로, useEffect에서 themeStatus가 비어있지 않을 경우에 해주는 이유는 새로고침 할 때마다 `theme`의 전역 상태가 "" 비어있기 때문에 매칭을 해주기 위함입니다.
+- 추가적으로, useEffect에서 themeStatus가 비어있지 않을 경우에 해주는 이유는 새로고침 할 때마다 `theme`의 전역 상태가 `""` 비어있기 때문에 매칭을 해주기 위함입니다.
 
 ### 4. Tailwind에 다크 클래스 적용하기
 지금까지 설명한 코드에 `<div className={themeStatus}>`를 추가하면 변화가 없을 수 있습니다. 이제 Tailwind CSS에 적용해봅시다.
@@ -164,7 +164,7 @@ export default config;
 ```
 - `darkMode : 'class'` 를 넣어줍시다!
 - 추가로, `colors : {  }` 안에 `light`, `dark` 를 나누어 넣어줍니다.
-	```js
+   ```js
       colors: {
         light: {
           bg: "#FFFFD1",
@@ -172,8 +172,9 @@ export default config;
         dark: {
           bg: "#128390",
         },
-    ```
+ ```
 
+*** 
 ### 5. 이제 layout에 ThemeProvider를 넣고 적용해봅시다!
 ```tsx
 <html lang="ko">
@@ -218,12 +219,11 @@ export default ThemeButton;
 ```
 - 버튼 클릭 시 저희가 만든 `toggleTheme`을 호출하고, 테마가 변경되었을 때 해당 값을 Cookie에 저장합니다.
 - 마지막으로 `page.tsx`에 해당 버튼을 불러서 쓰면 끝입니다!
-
-> 	여기서 쿠키를 저장할 때 저는 `universal-cookie` 라이브러리를 사용했습니다.
-> 		만약! 동일한 걸 쓰실 경우에
-> 		npm i universal-cookie 로 설치하시면 됩니다.
+> 여기서 쿠키를 저장할 때 저는 `universal-cookie` 라이브러리를 사용했습니다.
+> 만약! 동일한 걸 쓰실 경우에, 아래 명령어로 설치하시면 됩니다.
+> ```bahs
+>  npm i universal-cookie
+> ```
 
 ***
-여러분의 다크모드 기능이 잘 작동하길 바라겠습니다..!
-문의사항 또는 피드백은 언제나 환영합니다.
-많은 도움이 될 진 모르겠지만요 !
+#next #next14 #zustand #tailwind #적용기
