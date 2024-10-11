@@ -19,7 +19,7 @@
 ### 1. 전역 상태를 먼저 만들어 줍시다.
 
 전 프로젝트에서 `jotai`를 써봐서 `zustand`나 `redux`를 사용해보고 싶었습니다.
-하지만 작은 프로젝트에 redux를 쓰기에는 복잡하고 무거울 것 같지만 
+하지만 작은 프로젝트에 redux를 쓰기에는 기본 구조가 복잡하고(보일러플레이트 코드) `jotai` 를 쓰기엔 복잡한 상태 로직을 변경하는게 별로여서 zustand로 설정을습니다.
 
 zustand가 없다면.... 설치를 해줍시다!
 ```bash
@@ -58,5 +58,5 @@ const useThemeStore = create<ThemeStore>((set) => ({
 export default useThemeStore;
 ```
 코드를 설명드릴게요.
-- `setTheme` 와 `toggleTheme()` 를 따로 둔 이유는 두 함수의 역할을 명백하게 나누기 위해서였어요. 
+- `setTheme` 와 `toggleTheme()` 를 따로 둔 이유는 두 함수의 역할을 명백하게 나누기 위해서 였어요. 
 
