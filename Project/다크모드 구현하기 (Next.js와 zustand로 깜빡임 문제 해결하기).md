@@ -124,23 +124,25 @@ export default function ThemeDetector({
 - `themeStatus` 상태 변수를 만들어준 이유는. 서버 쿠키에서 넘어온 `defaultTheme` 를 적용하고, 후에 전역 상태인 `theme`가 변경될 경우 적용하기 위함입니다.
 - 추가적으로, useEffect에서 themeStatus가 비어있지 않을 경우에 해주는 이유는 새로고침 할 때마다 `theme`의 전역 상태가 "" 비어있기 때문에 매칭을 해주기 위함입니다.
 
-### Tailwind에 다크 클래스 적용하기
+### 4. Tailwind에 다크 클래스 적용하기
 지금까지 설명한 코드에 `<div className={themeStatus}>`를 추가하면 변화가 없을 수 있습니다. 이제 Tailwind CSS에 적용해봅시다.
 #### 설치가... 안되어있을수도 있을까요? 
 설치가 되어 있지 않다면 다음과 같이 진행해주세요.
 
-[테일윈드 ㄱ](https://tailwindcss.com/docs/installation )
+[테일윈드 공식 문서 GET START](https://tailwindcss.com/docs/installation )
+문서 보고 열심히 새팅을 해봅시다.
 ```
 npm install -D tailwindcss
 npx tailwindcss init
 ```
-문서 보고 열심히 새팅을 해봅시다.
+
 
 `tailwind.config.js`
 ```js
 import type { Config } from "tailwindcss";
+
 const config: Config = {
-  content: [ ...생략 ],
+  content: [ /* 생략 */ ],
   darkMode: "class",
   theme: {
     extend: {
@@ -150,12 +152,18 @@ const config: Config = {
         },
         dark: {
           bg: "#128390",
-  ...생략,
+        },
+        // 추가적인 색상 설정
+      },
+    },
+  },
 };
+
 export default config;
+
 ```
 - `darkMode : 'class'` 를 넣어줍시다!
-- 추가로, 확인을 위해 `colors : {  }` 안에 `light`, `dark` 를 나누어서 넣어봅시다,
+- 추가로, `colors : {  }` 안에 `light`, `dark` 를 나누어 넣어줍니다.
 	```js
       colors: {
         light: {
@@ -166,20 +174,21 @@ export default config;
         },
     ```
 
-### layout에 ThemeProvider를 넣고 적용해봅시다!
+### 5. 이제 layout에 ThemeProvider를 넣고 적용해봅시다!
 ```tsx
-    <html lang="ko">
-      <body className={`antialiased`}>
-        <ThemeProvider>
-          <div className="bg-white text-black dark:bg-blue-950 dark:text-white">
-            {children}
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+<html lang="ko">
+  <body className={`antialiased`}>
+    <ThemeProvider>
+      <div className="bg-white text-black dark:bg-blue-950 dark:text-white">
+        {children}
+      </div>
+    </ThemeProvider>
+  </body>
+</html>
 ```
+- 버튼을 눌러야 바뀌는게 보이겠죠?
 
-### 토글 버튼을 만들어볼까요?
+### 6. 마지막으로 토글 버튼을 만들어볼까요?
 ```jsx
 "use client"; 
 
@@ -207,7 +216,13 @@ const ThemeButton = () => {
 };
 export default ThemeButton;
 ```
-- 클릭했을 때 toogleTheme를 호출하고, theme가 변경되었을 때 
-- theme의 값을 Cookie에 세팅합니다
-- 이때 저는 `universal-cookie` 라이브러리 사용했고 
-- `npm i universal-cookie` 하셔서 설치하셔도 되고, 직접 설정해주셔도 됩니다!
+- 버튼 클릭 시 저희가 만든 `toggleTheme`을 호출하고, 테마가 변경되었을 때 해당 값을 Cookie에 저장합니다.
+- 마지막으로 `page.tsx`에 해당 버튼을 불러서 쓰면 끝입니다!
+
+> 	여기서 쿠키를 저장할 때 저는 `universal-cookie` 라이브러리를 사용했습니다.
+> 		만약! 동일한 걸 쓰실 경우에
+> 		npm i universal-cookie 로 설치하시면 됩니다.
+
+***
+여러분의 다크모드 기능이 잘 작동하길 바라겠습니다..!
+문의사항 또는 피드백은 언제나 환영합니다.
