@@ -155,7 +155,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
+                "file": "Project/다크모드 구현하기 (Next.js와 zustand로 깜빡임 문제 해결하기).md",
                 "mode": "source",
                 "source": false
               }
@@ -228,7 +228,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
+                "file": "Project/다크모드 구현하기 (Next.js와 zustand로 깜빡임 문제 해결하기).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -245,7 +245,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
+                "file": "Project/다크모드 구현하기 (Next.js와 zustand로 깜빡임 문제 해결하기).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -268,7 +268,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md"
+                "file": "Project/다크모드 구현하기 (Next.js와 zustand로 깜빡임 문제 해결하기).md"
               }
             }
           },
@@ -299,7 +299,7 @@
   },
   "active": "2ae3751474dd701e",
   "lastOpenFiles": [
-    "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
+    "Project/다크모드 구현하기 (Next.js와 zustand로 깜빡임 문제 해결하기).md",
     "Project",
     "React/React-Query.md",
     "conflict-files-obsidian-git.md",
