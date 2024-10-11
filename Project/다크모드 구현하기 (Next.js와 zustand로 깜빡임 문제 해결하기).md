@@ -131,14 +131,110 @@ export default function ThemeDetector({
 이제 Tailwind에 적용해봅시다.
 
 #### 설치가... 안되어있을수도 있을까요? 
-[테일윈드 Get Start ~](https://tailwindcss.com/docs/installation )
+[테일윈드 Get Start 링크](https://tailwindcss.com/docs/installation )
 ```
-
+npm install -D tailwindcss
+npx tailwindcss init
 ```
-
+문서 보고 열심히 새팅을 해봅시다.
 
 `tailwind.config.js`
-```tailwind.config.
+```js
+import type { Config } from "tailwindcss";
 
+const config: Config = {
+  content: [ ...생략 ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        light: {
+          bg: "#FFFFD1",
+        },
+        dark: {
+          bg: "#128390",
+        },
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
+```
+- `darkMode : 'class'` 를 넣어줍시다!
+- 추가로, 확인을 위해 `colors : {  }` 안에 `light`, `dark` 를 나누어서 넣어봅시다,
+	```js
+      colors: {
+        light: {
+          bg: "#FFFFD1",
+        },
+        dark: {
+          bg: "#128390",
+        },
+    ```
+
+### layout에 ThemeProvider를 넣고 적용해봅시다!
+```tsx
+    <html lang="ko">
+      <body className={`antialiased`}>
+        <ThemeProvider>
+          <div className="bg-white text-black dark:bg-blue-950 dark:text-white">
+            {children}
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
 ```
 
+### 토글 버튼을 만들어볼까요?
+```jsx
+"use client"; 
+
+import React from "react";
+import Cookies from "universal-cookie";
+import { useEffect } from "react";
+import useThemeStore from "../../store/themeStore";  
+
+const ThemeButton = () => {
+
+  const cookies = new Cookies();
+
+  const { theme, toggleTheme } = useThemeStore();
+
+  
+
+  useEffect(() => {
+
+    cookies.set("theme", theme, { path: "/" });
+
+  }, [theme]);
+
+  
+
+  return (
+
+    <button
+
+      className="py-4 px-12 text-2xl rounded-lg bg-light-bg text-black dark:bg-dark-bg dark:text-white "
+
+      onClick={() => {
+
+        toggleTheme();
+
+      }}
+
+    >
+
+      {theme ? theme : "Lading..."}
+
+    </button>
+
+  );
+
+};
+
+  
+
+export default ThemeButton;
+```
