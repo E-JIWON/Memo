@@ -16,6 +16,7 @@
 ### 1. 전역 상태를 먼저 만들어 줍시다.
 이전 프로젝트에서 `jotai`를 써봐서 `zustand`나 `redux`를 사용해보고 싶었습니다. 하지만 작은 프로젝트에 `redux`를 쓰기에는 기본 구조가 복잡하고(보일러플레이트 코드) `jotai`를 쓰기엔 복잡한 상태 로직을 변경하는게 별로여서 zustand로 설정했습니다.
 
+#### 혹시 설치가 안되어있다면?
 zustand가 없다면.... 설치를 해줍시다!
 ```bash
 npm i zustand
@@ -23,8 +24,9 @@ npm i zustand
 굿 설치가 완료됐어요. 바로 적용을 해봅시다.
 
 #### 상태관리 코드
- `app/_module/store/themeStore.ts`
+일단 상태관리 코드를 보여드리고 설명드리겠습니다.
 
+ `app/_module/store/themeStore.ts`
 ```ts
 import { ThemeType } from "@/app/_types/ThemeType";
 import { create } from "zustand";  
@@ -60,6 +62,7 @@ export default useThemeStore;
 먼저 `ThemeProvider`를 생성하여 테마를 관리할 수 있는 환경을 설정할겁니다.
 서버에서 쿠키를 읽어 현재 테마를 결정하고, 이를 `ThemeDetector`에 전달합니다.
 
+`app/_module/provider/(theme)/ThemeProvider.tsx`
 ```tsx
 import React from "react";
 import { cookies } from "next/headers";
@@ -82,6 +85,7 @@ export default ThemeProvider;
 detector란 '감시자' 라는 뜻입니다. 
 이녀석은 감시하는 놈입니다. 코드를 먼저 봅시다.
 
+`app/_module/provider/(theme)/ThemeDetector.tsx`
 ```jsx
 "use client";
 
@@ -119,4 +123,22 @@ export default function ThemeDetector({
 - 이 친구는 client에서 작동하는 녀석이라 `use client` 선언을 해줍시다,
 - 초기에 `ThemeProvider` 에서 쿠키에 저장되어있는 `defaultTheme`를 넘겨받습니다.
 - `themeStatus` 상태변수를 만들어준 이유는. 서버 쿠키에서 넘어온 `defaultTheme` 를 적용하고, 후에 전역 상태인 `theme`가 변경될 경우 적용해주기 위해서 입니다.
-- 추가로 설명드리자면, useEffect에서 themeStatus가 비어있지 않을 경우에 해주는 이유
+- 추가로 설명드리자면, useEffect에서 themeStatus가 비어있지 않을 경우에 해주는 이유는
+- 새로고침 할 때마다 `theme`의 전역 상태가 "" 비어있기 때문에 매칭을 해주기 위해서입니다.
+
+### Tailwind에 다크 클래스 적용하기
+방금 보신 코드에 `<div className={themeStatus}>` 까지 한다면 아무 변화도 안되어있을 것 같아요.
+이제 Tailwind에 적용해봅시다.
+
+#### 설치가... 안되어있을수도 있을까요? 
+[테일윈드 Get Start ~](https://tailwindcss.com/docs/installation )
+```
+
+```
+
+
+`tailwind.config.js`
+```tailwind.config.
+
+```
+
