@@ -148,9 +148,21 @@
                 "staged": false
               }
             }
+          },
+          {
+            "id": "2ae3751474dd701e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 11
+        "currentTab": 12
       }
     ],
     "direction": "vertical"
@@ -216,6 +228,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -232,6 +245,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -253,7 +267,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md"
+              }
             }
           },
           {
@@ -281,8 +297,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a1b332f00c013c84",
+  "active": "2ae3751474dd701e",
   "lastOpenFiles": [
+    "Project/다크모드 적용기 (Next.js 14, App router , Zustand).md",
+    "Project",
     "React/React-Query.md",
     "conflict-files-obsidian-git.md",
     "AWS/AWS를 사용해보자.md",
