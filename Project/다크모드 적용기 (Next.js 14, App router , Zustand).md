@@ -2,6 +2,8 @@
 ~~어우 'use client' 놈..~~  🌚고작 이거가지구 열받았던게 부끄러울 정도의 수준의 블로그 글입니다..
 초급자임을 이해해주세요..
 
+이번 다크모드 프로젝트에선 클라이언트와 서버간의 데이터 흐름을 유지하면서 깜빡임(Flicker) 문제를 해결하는 데 중점을 두었습니다.
+
 > 아니 왜 vercel에서 지원하는 next-thems가 있는데 왜 안했나요?
 >  
 > Next-Thems는 
@@ -13,4 +15,43 @@
 > 2. Tailwnd CSS
 > 3. zustand
 
+
+### 1. 전역 상태를 먼저 만들어 줍시다.
+zustand가 없다면.... 설치를 해줍시다!
+```bash
+npm i zustand
+```
+굿 설치가 완료됐어요. 바로 적용을 해봅시다.
+
+#### 상태관리 코드
+ `app/_module/store/themeStore.ts`
+
+```ts
+import { ThemeType } from "@/app/_types/ThemeType";
+import { create } from "zustand";  
+
+interface ThemeStore {
+  theme: ThemeType;
+  setTheme: (newTheme: ThemeType) => void;
+  toggleTheme: () => void;
+}  
+
+/**
+ * @desc 테마 전역 상태
+ * @desc setTheme 특정 theme를 적용하기 위함
+ * @desc toggle 호출로 토글
+ */
+const useThemeStore = create<ThemeStore>((set) => ({
+  theme: "",
+  setTheme: (newTheme: ThemeType) => set({ theme: newTheme }),
+  toggleTheme: () =>
+    set((state) => ({
+      theme: state.theme === "dark" ? "light" : "dark",
+    })),
+}));
+
+  
+export default useThemeStore;
+```
+저는 `toggle`이랑 `setTHeme`를 따로 두기로 했어요.
 
