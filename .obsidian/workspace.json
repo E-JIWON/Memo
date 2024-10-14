@@ -160,9 +160,31 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "3fa16bf4783bfb52",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian/workspace.json",
+                "staged": false
+              }
+            }
+          },
+          {
+            "id": "f20c54352b76bb68",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
+                "staged": false
+              }
+            }
           }
         ],
-        "currentTab": 12
+        "currentTab": 14
       }
     ],
     "direction": "vertical"
@@ -228,7 +250,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -245,7 +266,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -267,9 +287,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md"
-              }
+              "state": {}
             }
           },
           {
@@ -277,6 +295,14 @@
             "type": "leaf",
             "state": {
               "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "7432c4c89ebb75a4",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
               "state": {}
             }
           }
@@ -297,11 +323,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2ae3751474dd701e",
+  "active": "f20c54352b76bb68",
   "lastOpenFiles": [
+    "적용기/next font 사용하여 로컬 파일 및 Google 폰트 적용하기.md",
+    "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
     "모던 리액트 Deep Dive/01장 - 리액트 개방를 위해 꼭 알아야 할 자바 스크립트.md",
     "모던 리액트 Deep Dive",
-    "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
     "적용기",
     "React/React-Query.md",
     "conflict-files-obsidian-git.md",
