@@ -4,6 +4,9 @@
 예전에 만들었던 프로젝트에 mysql이 있었고, 조금 간편하게 firebase를 사용하여 만드려고한다.
 
 
+> [!NOTE] firebase web docs
+> https://firebase.google.com/docs/web/setup?hl=ko#available-libraries
+
 ### 이게 먼지부터 알아보자
 #### ### Firebase란?
 **Firebase**는 Google에서 제공하는 클라우드 서비스로, 데이터베이스, 인증, 호스팅 등 다양한 기능을 
