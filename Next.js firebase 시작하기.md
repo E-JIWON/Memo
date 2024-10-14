@@ -21,7 +21,12 @@
 ### 4. env파일로 api 키 숨기기
 ### 5. config 파일
 
-### 6. config
+### 6. Firestore 데이터베이스 만들기
+![[Pasted image 20241015001421.png]]
+1. **Firebase 콘솔**에 로그인한 후, 방금 만든 프로젝트를 선택합니다.
+2. 왼쪽 메뉴에서 **Firestore Database**를 클릭합니다.
+3. **Create Database** 버튼을 클릭하여 Firestore 데이터베이스를 생성합니다.
+4. 데이터베이스의 보안 규칙을 설정합니다. 개발 중에는 "Test mode"를 선택할 수 있지만, 실제로 사용할 때는 보안을 강화해야 합니다.
 
 
 
