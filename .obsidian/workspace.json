@@ -182,9 +182,21 @@
                 "staged": false
               }
             }
+          },
+          {
+            "id": "1881ab95090666f7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Next.js firebase 시작하기.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 14
+        "currentTab": 15
       }
     ],
     "direction": "vertical"
@@ -250,6 +262,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Next.js firebase 시작하기.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -266,6 +279,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Next.js firebase 시작하기.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -287,7 +301,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Next.js firebase 시작하기.md"
+              }
             }
           },
           {
@@ -323,8 +339,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f20c54352b76bb68",
+  "active": "1881ab95090666f7",
   "lastOpenFiles": [
+    "Next.js firebase 시작하기.md",
     "적용기/next font 사용하여 로컬 파일 및 Google 폰트 적용하기.md",
     "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
     "모던 리액트 Deep Dive/01장 - 리액트 개방를 위해 꼭 알아야 할 자바 스크립트.md",
