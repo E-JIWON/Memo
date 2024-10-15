@@ -1,0 +1,48 @@
+
+#### 들어가며
+블로그 주인장은 firebase가 먼지 모른다 ! 
+예전에 만들었던 프로젝트에 mysql이 있었고, 조금 간편하게 firebase를 사용하여 만드려고한다.
+
+
+> [!NOTE] firebase web docs
+> https://firebase.google.com/docs/web/setup?hl=ko#available-libraries
+
+### 이게 먼지부터 알아보자
+#### ### Firebase란?
+**Firebase**는 Google에서 제공하는 클라우드 서비스로, 데이터베이스, 인증, 호스팅 등 다양한 기능을 
+제공합니다. 주로 모바일 및 웹 애플리케이션을 개발할 때 많이 사용됩니다.
+
+### Firestore란?
+**Firestore**는 Firebase의 실시간 NoSQL 데이터베이스입니다. 데이터를 문서(document) 형태로 저장하며, 이 문서들은 컬렉션(collection)으로 그룹화됩니다. 데이터베이스를 사용하면 애플리케이션에서 데이터를 읽고 쓸 수 있습니다.
+
+
+### 시작해보자.
+
+### 1. firebase 회원가입
+### 2. DB
+### 3. 에널리틱스
+### 4. env파일로 api 키 숨기기
+### 5. config 파일
+
+### 6. Firestore 데이터베이스 만들기
+![[Pasted image 20241015001421.png]]
+1. **Firebase 콘솔**에 로그인한 후, 방금 만든 프로젝트를 선택합니다.
+2. 왼쪽 메뉴에서 **Firestore Database**를 클릭합니다.
+3. **Create Database** 버튼을 클릭하여 Firestore 데이터베이스를 생성합니다.
+4. 데이터베이스의 보안 규칙을 설정합니다. 개발 중에는 "Test mode"를 선택할 수 있지만, 실제로 사용할 때는 보안을 강화해야 합니다.
+
+#### firebase에서 프로젝트 / 컬렉션 / 문서 아이디가 멀 뜻하는거죠..?
+저는 사실 이게 이해가안돼서 좀 헤맸던 것 같아요..!
+그래서 제가 찍먹해보았던 Mysql 과 조금 비교를 해보자면!
+##### MySQL과 Firestore 구조 비교
+> **MySQL**    
+    - **데이터베이스 (Database)**: 프로젝트 또는 애플리케이션 단위로 데이터를 저장하는 공간. 예를 들어, `starbucks_kiosk`라는 데이터베이스가 있습니다.
+    - **테이블 (Table)**: 데이터베이스 내에서 관련 데이터를 저장하는 구조. 각 테이블은 특정 데이터 유형을 정의합니다. 예: `users`, `menu_items`, `orders` 등.
+  > **Firestore**
+    - **데이터베이스 (Database)**: Firestore에서는 모든 데이터가 저장되는 단위로, 예를 들어 `starbucks_kiosk_db`라는 데이터베이스를 만들 수 있습니다.
+    - **컬렉션 (Collection)**: 데이터베이스 내에서 관련 문서를 저장하는 그룹입니다. 각 컬렉션은 특정 데이터 유형을 정의합니다. 예: `users`, `menu_items`, `orders` 등.
+    - **문서 (Document)**: 컬렉션 내의 개별 데이터 항목으로, MySQL의 테이블에서 행(row)과 유사합니다.
+##### 요약
+- **MySQL**: 데이터베이스 → 테이블 → 행
+- **Firestore**: 데이터베이스 → 컬렉션 → 문서
+ 
