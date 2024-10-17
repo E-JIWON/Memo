@@ -32,8 +32,27 @@ function parentComponent() {
 	}, [])  // 빈 의존성 배열: 함수가 재생성되지 않
 
 	return (
-		Count : {count}
+		<>
+			Count : {count}
+			<ChildCompoentn onIncrement={increment} />
+		</>
 	)
 }
 
+const ChildComponent = React.memo(({ onIncrement }) => { 
+	console.log("ChildComponent rendered"); 
+	return <button onClick={onIncrement}>Increment</button>; 
+});
 ```
+
+#### 6. useCallback 과 useMemo의 차이
+- useCallback(fn, deps)는 useMemo(() => fn, dept)와 동등합니다
+- useCallback은 함수 자체를 메모이제이션하고, useMemo는 함수의 결과값을 메모이제이션 합니다.
+
+#### 7. 주의사항
+- 모든 함수에 `useCallback`을 사용하는 것은 불필요할 수 있습니다. 실제로 성능 향상이 필요한 경우에만 사용
+- 의존성 배열 주의
+
+#### 8. 성능 고려사항:
+- `useCallback` 자체도 약간의 오버헤드가 있다. 매우 간단한 함수나 자주 변경되는 의존성이 있는 경우에는 사용하지 않는 것이 더 효율적일 수 있다.
+- 
