@@ -50,7 +50,9 @@ const ChildComponent = React.memo(({ onIncrement }) => {
 	return <button onClick={onIncrement}>Increment</button>; 
 });
 ```
-- 💡 그니까 이 함수는
+- 💡 그러니까 지금 이 함수가 `count`가 변화되어서 리 렌더링이 되는데, `increment`함수를 props로 전달되고 있기 때문에, 자식 요소도 리렌더링이 되고 리렌더링이 되면 함수는 새로운 인스턴스를 생성한다.
+- 하지만 `useCallback`으로 함수를 전달하고 있어서 같은 인스턴스를 참조를 하고 있기 때문에 리렌더링이 되지 않는다.
+- 추가로, `ChildComponent`도 
 #### 6. useCallback 과 useMemo의 차이
 - useCallback(fn, deps)는 useMemo(() => fn, dept)와 동등합니다
 - useCallback은 함수 자체를 메모이제이션하고, useMemo는 함수의 결과값을 메모이제이션 합니다.
