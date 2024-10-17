@@ -1,8 +1,11 @@
 {
-  "theme": "obsidian",
+  "theme": "moonstone",
   "accentColor": "#4f9272",
-  "cssTheme": "Blue Topaz",
-  "baseFontSize": 16,
+  "cssTheme": "Listive",
+  "baseFontSize": 14,
   "nativeMenus": false,
-  "interfaceFontFamily": "Comic Sans MS"
+  "interfaceFontFamily": "Gowun Batang,Comic Sans MS",
+  "textFontFamily": "Comic Sans MS,Gowun Batang",
+  "monospaceFontFamily": "Comic Sans MS",
+  "baseFontSizeAction": true
 }
