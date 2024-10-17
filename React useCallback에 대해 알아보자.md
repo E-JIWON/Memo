@@ -72,11 +72,11 @@ const ChildComponentWithLog = React.memo(({ onIncrementWithLog }) => {
 	 return <button onClick={onIncrementWithLog}>Increment with Log</button>;
  });
 ```
-💡 
+  💡 
 - `increment` 함수는 항상 같은 인스턴스를 참조하므로 `ChildComponent`는 `count`나 `otherState`가 변경되어도 리 렌더링되지 않는다.
 - `incrementWithLog` 함수는 `count`가 변경될 때마다 새로운 인스턴스가 생성되므로 `count`가 변경될 때마다 `ChildComponentWithLog`가 리 렌더링된다.
 - `otherState`가 변경되면 `ParentComponent`는 리렌더링되지만, 두 자식 컴포넌트 모두 재렌더링되지 않는다.
-
+*** 
 #### 5. useCallback을 사용하지 않았을 때의 예시
 ```ts
 function ParentComponent() {
@@ -93,111 +93,82 @@ function ParentComponent() {
   );
 }
 ```
-
 - 💡 `count`가 변경될 때마다 `ParentComponent`가 리렌더링된다.
   리렌더링될 때마다 `onClickUpCount` 함수가 새로 생성된다.
   결과적으로 `ChildComponent`가 매번 리렌더링된다.
 
-💡 주의사항:
-
+-  주의사항
 - `ChildComponent`가 복잡하거나 무거운 연산을 포함하고 있다면, 불필요한 리렌더링으로 성능이 저하될 수 있다.
 - `count`만 사용하고 `onClickUpCount`는 사용하지 않는 경우에도 함수가 새로 생성되어 리렌더링이 발생한다.
 
-## 6. useCallback과 useMemo의 차이
-
+#### 6. useCallback과 useMemo의 차이
 - `useCallback(fn, deps)`는 `useMemo(() => fn, deps)`와 동등하다.
 - `useCallback`은 함수 자체를 메모이제이션하고, `useMemo`는 함수의 결과값을 메모이제이션한다.
 
-예시:
+```tsx
+// useCallback
+const memoizedFunction = useCallback(() => {
+  return expensiveCalculation(a, b);
+}, [a, b]);
 
-tsx
-
-Copy
-
-`// useCallback const memoizedFunction = useCallback(() => {   return expensiveCalculation(a, b); }, [a, b]); // useMemo const memoizedResult = useMemo(() => {   return expensiveCalculation(a, b); }, [a, b]);`
-
-💡 `useCallback`은 함수 정의 자체를 기억하고, `useMemo`는 함수 실행 결과를 기억한다. 💡 `useCallback`은 이벤트 핸들러나 자식 컴포넌트에 전달할 콜백 함수를 최적화할 때 주로 사용한다. 💡 `useMemo`는 계산 비용이 높은 값을 메모이제이션할 때 사용한다.
-
-## 7. 주의사항
-
+// useMemo
+const memoizedResult = useMemo(() => {
+  return expensiveCalculation(a, b);
+}, [a, b]);
+```
+- `useCallback`은 함수 정의 자체를 기억하고, `useMemo`는 함수 실행 결과를 기억한다.
+- `useCallback`은 이벤트 핸들러나 자식 컴포넌트에 전달할 콜백 함수를 최적화할 때 주로 사용한다.
+- `useMemo`는 계산 비용이 높은 값을 메모이제이션할 때 사용한다.
+#### 7. 주의사항
 - 모든 함수에 `useCallback`을 사용하는 것은 불필요할 수 있다. 실제로 성능 향상이 필요한 경우에만 사용해야 한다.
 - 의존성 배열을 올바르게 관리해야 한다. 필요한 의존성을 누락하면 오래된 클로저 문제가 발생할 수 있다.
 
-예시:
+- 💡 아래는 클로저 문제이다 확인해보자.
+```tsx
+const [count, setCount] = useState(0);
 
-tsx
+// 잘못된 사용: count를 의존성 배열에 추가하지 않음
+const incorrectCallback = useCallback(() => {
+  console.log(`Count: ${count}`);
+}, []); // 항상 초기 count 값(0)을 참조
 
-Copy
+// 올바른 사용
+const correctCallback = useCallback(() => {
+  console.log(`Count: ${count}`);
+}, [count]); // count가 변경될 때마다 함수 재생성	
+```
 
-``const [count, setCount] = useState(0); // 잘못된 사용: count를 의존성 배열에 추가하지 않음 const incorrectCallback = useCallback(() => {   console.log(`Count: ${count}`); }, []); // 항상 초기 count 값(0)을 참조 // 올바른 사용 const correctCallback = useCallback(() => {   console.log(`Count: ${count}`); }, [count]); // count가 변경될 때마다 함수 재생성``
-
-## 8. 성능 고려사항:
-
-- `useCallback` 자체도 약간의 오버헤드가 있다. 매우 간단한 함수나 자주 변경되는 의존성이 있는 경우에는 사용하지 않는 것이 더 효율적일 수 있다.
+***
+#### 8. 성능 고려사항:
+- `useCallback` 자체도 약간의 오버헤드가 있다. 
+  매우 간단한 함수나 자주 변경되는 의존성이 있는 경우에는 사용하지 않는 것이 더 효율적일 수 있다.
 - 대규모 목록을 렌더링하거나 복잡한 계산이 필요한 컴포넌트에서 특히 유용하다.
 
-실제 사용 시나리오:
-
+***
+#### 9. 실제 사용 시나리오:
 1. 대규모 목록 렌더링: 각 항목에 대한 이벤트 핸들러를 `useCallback`으로 최적화
 2. 데이터 페칭: 의존성이 변경될 때만 API 호출을 다시 하도록 `useCallback` 사용
 3. 차트나 그래프 컴포넌트: 데이터 처리 함수를 `useCallback`으로 최적화
 
-tsx
-
-Copy
-
-``const DataGrid = ({ data }) => {   const handleRowClick = useCallback((id) => {    console.log(`Row ${id} clicked`);  }, []);   return (    <div>      {data.map(item => (        <Row          key={item.id}          data={item}          onClick={() => handleRowClick(item.id)}        />      ))}    </div>  ); };``
-
-이 예제에서 `handleRowClick`은 `useCallback`으로 메모이제이션되어, `data`가 변경되어도 각 `Row` 컴포넌트가 불필요하게 재렌더링되는 것을 방지한다.
-
----
-
-이렇게 수정하고 추가한 내용이 초보자들에게 `useCallback`의 개념, 사용법, 그리고 주의사항을 더 잘 이해시킬 수 있을 것 같습니다. 필요하다면 더 자세한 설명이나 예시를 추가할 수 있습니다.
-
-CopyRetry
-
-Claude does not have the ability to run the code it generates yet.
-
-[Claude can make mistakes. Please double-check responses.](https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on)
-
-```
-- 💡 그러니까 지금 이 함수가 `count`가 변화되어서 리 렌더링이 되는데, `increment`함수를 props로 전달되고 있기 때문에, 자식 요소도 리렌더링이 되고 리렌더링이 되면 함수는 새로운 인스턴스를 생성한다.
-  하지만 `useCallback`으로 함수를 전달하고 있어서 같은 인스턴스를 참조를 하고 있기 때문에 리렌더링이 되지 않는다.
-  추가로, `ChildComponent`도 `memo`를 사용하고 있기 때문에 `{count}`가 변경되어도 메모이제이션이 되고 있다.
-  
-- 💡 아래는 사용하지 않았을 때의 예시이다.
 ```tsx
-function ParentComponent() {
-  const [count, setCount] = useState(0);
-
-  // 이 함수는 ParentComponent가 리렌더링될 때마다 새로 생성됨
-  const onClickUpCount = () => setCount(c => c + 1);
+const DataGrid = ({ data }) => {
+  const handleRowClick = useCallback((id) => {
+    console.log(`Row ${id} clicked`);
+  }, []);
 
   return (
     <div>
-      Count: {count}
-      <ChildComponent onIncrement={onClickUpCount} count={count} />
+      {data.map(item => (
+        <Row 
+          key={item.id} 
+          data={item} 
+          onClick={() => handleRowClick(item.id)}
+        />
+      ))}
     </div>
   );
-}
+};
 ```
-- 💡 위에 설명한 것처럼 이 경우에는 `{count}` 가 변경될 때마다 `ParentComponent`가 리 렌더링 되고,
-	리 렌더링 될 때마다 `onClickUpCount` 함수가 새로 생성되고, 결과적으로 `CildComponent` 가 매번 리 렌더링된다.
-- 💡 만약 `ChildComponent` 가 복잡하거나 무거운 연산을 포함하고 있다면, 불필요한 리 렌더링으로 성능이 저하될 수 있다. 
-- 💡 특히 `count`만 사용하고 `onClickUpCount` 는 사용하지 않아도 함수가 새로 생성되기 때문에 리 렌더링이 발생한다.
+💡 이 예제에서 `handleRowClick`은 `useCallback`으로 메모이제이션되어, `data`가 변경되어도 각 `Row` 컴포넌트가 불필요하게 재렌더링되는 것을 방지한다.
 
 ***
-#### 6. useCallback 과 useMemo의 차이
-- `useCallback(fn, deps)`는 `useMemo(() => fn, dept)`와 동등합니다
-- `useCallback`은 **함수 자체**를 메모이제이션하고, `useMemo`는 **함수의 결과값**을 메모이제이션 합니다.
-
-***
-#### 7. 주의사항
-- 모든 함수에 `useCallback`을 사용하는 것은 불필요할 수 있다.
-- 실제로 성능 향상이 필요한 경우에만 사용
-- 의존성 배열 주의
-
-***
-#### 8. 성능 고려사항:
-- `useCallback` 자체도 약간의 오버헤드가 있다. 매우 간단한 함수나 자주 변경되는 의존성이 있는 경우에는 사용하지 않는 것이 더 효율적일 수 있다.
-- 
