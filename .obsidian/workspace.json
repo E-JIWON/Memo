@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "useCallback.md",
+                "file": "React useCallback에 대해 알아보자.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "useCallback"
+              "title": "React useCallback에 대해 알아보자"
             }
           }
         ],
@@ -214,7 +214,7 @@
   "active": "b43f76363797d0f3",
   "lastOpenFiles": [
     "React/용어 정리.md",
-    "useCallback.md",
+    "React useCallback에 대해 알아보자.md",
     "적용기/iOS 웹뷰에서 설정 앱으로 이동하기.md",
     "README.md",
     "Next.js firebase 시작하기.md",
