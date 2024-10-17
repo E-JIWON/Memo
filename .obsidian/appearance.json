@@ -1,11 +1,11 @@
 {
-  "theme": "moonstone",
+  "theme": "obsidian",
   "accentColor": "#4f9272",
-  "cssTheme": "Cardstock",
+  "cssTheme": "Typora-Vue",
   "baseFontSize": 14,
   "nativeMenus": false,
   "interfaceFontFamily": "Gowun Batang,Comic Sans MS",
-  "textFontFamily": "Comic Sans MS,Gowun Batang",
+  "textFontFamily": "Comic Sans MS,HYGothic",
   "monospaceFontFamily": "Comic Sans MS",
   "baseFontSizeAction": true
 }
