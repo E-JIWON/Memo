@@ -2,7 +2,7 @@
   "theme": "moonstone",
   "accentColor": "#4f9272",
   "cssTheme": "Typora-Vue",
-  "baseFontSize": 10,
+  "baseFontSize": 13,
   "nativeMenus": false,
   "interfaceFontFamily": "Gowun Batang,Comic Sans MS",
   "textFontFamily": "Comic Sans MS,제주명조",
