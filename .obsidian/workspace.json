@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "React/React-Query.md",
+                "file": "React/용어 정리.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "React-Query"
+              "title": "용어 정리"
             }
           },
           {
@@ -95,7 +95,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#우와",
+                "query": "tag:#우와section:(인스턴스)",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -120,8 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "d9550209b73305cc",
@@ -229,13 +228,14 @@
   },
   "active": "d711c423b6f39575",
   "lastOpenFiles": [
-    "Environment.md",
-    "면접 준비/면접 준비 -기술 면접.md",
-    "면접 준비/무제 파일 1.md",
+    "React/용어 정리.md",
+    "인스턴스.md",
     "React/React-Query.md",
+    "면접 준비/면접 준비 -기술 면접.md",
+    "Environment.md",
+    "면접 준비/무제 파일 1.md",
     "면접 준비",
     "React/React useCallback에 대해 알아보자.md",
-    "React/용어 정리.md",
     "적용기/iOS 웹뷰에서 설정 앱으로 이동하기.md",
     "README.md",
     "Next.js firebase 시작하기.md",
@@ -263,7 +263,6 @@
     "README - 복사본.md",
     "무제 파일 1.md",
     "Obsidian",
-    "Welcome.md",
     "무제 파일.canvas",
     "Daliy",
     "Javascript"
