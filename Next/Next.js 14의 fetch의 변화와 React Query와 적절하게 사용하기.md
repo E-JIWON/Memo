@@ -2,25 +2,7 @@ Next.js 14가 출시되면서 데이터 `fetching` 방식에 큰 변화가 생�
 이번 글에서는 Next.js 14의 새로운 `fetch`기능을 살펴보고, 이전 버전 과 React Query와 비교해 본다.
 또한, Next.js 14 환경에서 React Query를 사용하는 것이 적절한지와 효과적인 사용 방법에 대해서도 알아본다.
 
-### Next.js Next 14 fetch 달라진점만 보기
-Next.js 14에서는 내장 `fetch`함수에 중요한 개선사항이 추가 되었다.
-- **자동 중복 제거** :동일한 요청은 한 번만 실행된다.
-- **자동 캐싱** : 결과가 자동으로 캐시된다.
-
-```tsx
-// app/(home)/page.js
-async function getData() {
-  const res = await fetch('https://api.example.com/data');
-  
-export default async function Page() {
-  const data = await getData()
-  return <main>{/* 데이터를 사용하여 UI 렌더링 */}</main>
-}
-```
-- 이 코드에서 `fetch` 함수는 **자동으로 결과를 캐시**하고, **동일한 요청이 여러 번 발생해도 한 번만 실행**됩니다.
-
-
-### 2. Next.js 13, Next.js 14 fetch 비교
+### 1. Next.js 13, Next.js 14 fetch 비교
 ```mermaid
 sequenceDiagram
     participant C as Component
