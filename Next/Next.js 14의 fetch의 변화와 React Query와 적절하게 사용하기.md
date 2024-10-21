@@ -1,10 +1,9 @@
+Next.js 14가 출시되면서 데이터 `fetching` 방식에 큰 변화가 생겼다.
+이번 글에서는 Next.js 14의 새로운 `fetch`기능을 살펴보고, 이전 버전 과 React Query와 비교해 본다.
+또한, Next.js 14 환경에서 React Query를 사용하는 것이 적절한지와 효과적인 사용 방법에 대해서도 알아본다.
 
-Next.js 14가 출시되면서 데이터 `fetching` 방식에 큰 변화가 있다.
-이번 글에서는 Next.js14의 새로운 `fetch`기능을 살펴보고, 이전 버전 및 `React Query`와 비교해 보겠습니다.
-또한, Next.js 14 환경에서 React Query를 사용하는게 적절한가 ? 와 효과적으로 사용하는 방법에 대해서도 알아보겠습니다.
-
-### 1. Next 14의 새로운 fetch 기능
-Next 14에서는 내장 `fetch`함수에 중요한 개선사항이 추가 되었다.
+### Next.js Next 14 fetch 달라진점만 보기
+Next.js 14에서는 내장 `fetch`함수에 중요한 개선사항이 추가 되었다.
 - **자동 중복 제거** :동일한 요청은 한 번만 실행된다.
 - **자동 캐싱** : 결과가 자동으로 캐시된다.
 
@@ -20,7 +19,8 @@ export default async function Page() {
 ```
 - 이 코드에서 `fetch` 함수는 **자동으로 결과를 캐시**하고, **동일한 요청이 여러 번 발생해도 한 번만 실행**됩니다.
 
-### 2. Next 13, Next 14 fetch 비교
+
+### 2. Next.js 13, Next.js 14 fetch 비교
 ```mermaid
 sequenceDiagram
     participant C as Component
@@ -45,10 +45,10 @@ sequenceDiagram
     end
     F14-->>C: 데이터 반환
 ```
-- 위 다이어그램에서 볼 수 있듯이, Next.js 14의 `fetch`는 **자동 캐싱**과 **중복 제거 기능**을 제공하여 **불필요한 서버 요청을 줄이고 성능을 향상** 시킨다.
+- 이 다이어그램은 Next 13과 14의 `fetch` 동작의 차이를 보여준다. Next 14는 캐시를 활용하여 불필요한 서버 요청을 줄이고 성능을 향상 시킨다.
 
-### Next.js 13의 한계와 React Query의 등장
-💡 해당 부분은 Next 14버전에서 React Query를 쓰는 이유를 찾으려면, Next 13 이전 버전에서 사용한 이유를 알아야 할 것 같아서 추가했습니다.
+### Next.js 13 fetch 한계와 React Query
+💡 이 부분은 Next.js 14 버전에서 React Query를 쓰는 이유를 찾으려면, Next.js 13 이전 버전에서 사용한 이유를 알아야 할 것 같아서 추가했습니다
 
 💡 Next.js 13에서는 데이터 fetching에 몇 가지 한계가 있었습니다
 - **수동 캐싱 관리:** 개발자가 직접 캐싱 로직을 구현해야 했습니다.
