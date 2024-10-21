@@ -21,8 +21,34 @@ export default async function UserProfile({ params }) {
 ```
 
 ### Next 13, Next 14, React-Query 데이터 흐름도 비교
-![[Pasted image 20241021154442.png]]- Next.js 13:
-    - 클라이언트와 서버 컴포넌트가 개별적으로 fetch 요청을 수행합니다.
+```mermaid
+graph TD
+    subgraph Next.js13
+        A1[컴포넌트] -->|개별 fetch| B1[서버]
+        B1 -->|응답| A1
+        A1 -->|수동 캐시 관리| C1[로컬 상태]
+    end
+    subgraph ReactQuery
+        A3[컴포넌트] -->|useQuery| B3[React Query]
+        B3 -->|캐시된 데이터| A3
+        B3 -->|필요시 fetch| C3[서버]
+        C3 -->|응답| B3
+        B3 -->|자동 캐시 관리| D3[Query 캐시]
+    end
+    
+    subgraph Next.js14
+        A2[컴포넌트] -->|자동 중복제거 fetch| B2[서버]
+        B2 -->|응답| A2
+        B2 -->|자동 캐싱| C2[서버 캐시]
+    end
+```
+- Next 14 
+	- 클라이언트와 서버 컴포넌트 모두 동일한 `fetch` 매커니즘 사용한다.
+	- 자동 중복 제거 기능이 내장되어 있다.
+	- 서버 측에서 자동 캐싱이 이루어진다.
+	- 재 검증 옵션을 통해 캐시 갱신을 제어 할 수 있다.
+- Next.js 13:
+    - 클라이언트와 서버 컴포넌트가 개별적으로 fetch 요청을 수행한다.
     - 캐싱은 수동으로 관리해야 합니다.
     - 중복 요청 방지를 위해 추가 로직이 필요할 수 있습니다.
 - Next.js 14:
