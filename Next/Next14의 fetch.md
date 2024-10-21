@@ -75,7 +75,5 @@ function MyComponent() {
 ```
 
 ### Next 14와 React Query 적절한 사용
-Next 14에서 데이터 fetching이 크게 개선되었기 때문에, 많은 경우에 React Query를 사용하지 않아도 된다 생각한다.
-React Query에서 지원해주던 **자동 중복 제거**, **자동 캐싱** 부분은 Next 14에서 지원해주기 때문에 
-
+Next.js 14에서 데이터 fetching이 크게 개선되어, 많은 경우를 React Query를 대체할 수 있게 되었다.
 
