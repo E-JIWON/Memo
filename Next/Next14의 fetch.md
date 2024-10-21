@@ -1,7 +1,54 @@
 Next.js 14가 출시되면서 데이터 `fetching` 방식에 큰 변화가 있다.
-이번 글에서는 Next.js14의 새로운 `fetch`기능을 살펴보고, 이전 버전 및 `React Query`사용이 적절한가? 에 대해 적어보려고 한다.
-또한, Next.js 14환경에서 
-Next.js 14가 출시되면서 데이터 fetching 방식에 큰 변화가 있었습니다. 이번 글에서는 Next.js 14의 새로운 fetch 기능을 살펴보고, 이전 버전 및 React Query와 비교해 보겠습니다. 또한, Next.js 14 환경에서 React Query를 효과적으로 사용하는 방법에 대해서도 알아보겠습니다.
+이번 글에서는 Next.js14의 새로운 `fetch`기능을 살펴보고, 이전 버전 및 `React Query`와 비교해 보겠습니다.
+또한, Next.js 14 환경에서 React Query를 사용하는게 적절한가 ? 와 효과적으로 사용하는 방법에 대해서도 알아보겠습니다.
+
+### 1. Next.js 14 fetch 사용법부터 알아봅시다. 
+Next.js 14에서는 내장된 `fetch` 함수를 사용하여 데이터를 가져올 수 있습니다.
+이 `fetch` 함수는 자동 중복 제거와 캐싱 기능을 제공합니다.
+
+```tsx
+// app/(home)/page.js
+async function getData() {
+  const res = await fetch('https://api.example.com/data')
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
+}
+
+export default async function Page() {
+  const data = await getData()
+  return <main>{/* 데이터를 사용하여 UI 렌더링 */}</main>
+}
+```
+- 이 코드에서 `fetch` 함수는 자동으로 결과를 캐시하고, 동일한 요청이 여러 번 발생해도 한 번만 실행됩니다.
+
+### 2. Next 13, Next 14 fetch 비교
+```mermaid
+sequenceDiagram
+    participant C as Component
+    participant F13 as Next 13 Fetch
+    participant F14 as Next 14 Fetch
+    participant S as Server
+    participant Cache as Cache
+
+    C->>F13: 데이터 요청
+    F13->>S: 매번 새로운 요청
+    S-->>F13: 응답
+    F13-->>C: 데이터 반환
+
+    C->>F14: 데이터 요청
+    F14->>Cache: 캐시 확인
+    alt 캐시 있음
+        Cache-->>F14: 캐시된 데이터
+    else 캐시 없음
+        F14->>S: 새로운 요청
+        S-->>F14: 응답
+        F14->>Cache: 캐시 저장
+    end
+    F14-->>C: 데이터 반환
+```
+- 위 다이어그램에서 볼
 ### Next 13, Next 14, React-Query 데이터 흐름도 비교
 ```mermaid
 graph TD
