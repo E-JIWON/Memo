@@ -154,16 +154,6 @@
               "icon": "git-pull-request",
               "title": "Source Control"
             }
-          },
-          {
-            "id": "73329220e3deedea",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Calendar"
-            }
           }
         ],
         "currentTab": 4
@@ -179,19 +169,22 @@
       "canvas:새 캔버스 만들기": false,
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "obsidian-kanban:새 보드 만들기": false
     }
   },
   "active": "e3c8b295452a2c12",
   "lastOpenFiles": [
-    "_Interview/면접에서 useState만들었다..md",
+    "_TODO/TODO.md",
+    "_TODO",
+    "Next/Next14의 fetch.md",
+    "Interview/면접에서 useState만들었다..md",
     "Pasted image 20241015001421.png",
     "Pasted image 20241015163250.png",
-    "Next/Next14의 fetch.md",
     "README.md",
     "React/용어 정리.md",
     "Next",
-    "_Interview/면접 준비 -기술 면접.md",
+    "Interview/면접 준비 -기술 면접.md",
     "_Modern React Deep Dive/01장 - 리액트 개방를 위해 꼭 알아야 할 자바 스크립트.md",
     "React/Context와 Provider.md",
     "Environment.md",
@@ -200,7 +193,7 @@
     "적용기/다크모드 구현하기  (Next.js와 zustand로 깜빡임 문제 해결하기).md",
     "AWS/AWS를 사용해보자.md",
     "React/React-Query.md",
-    "_Interview",
+    "Interview",
     "React/React useCallback에 대해 알아보자.md",
     "Next.js firebase 시작하기.md",
     "Obsidian/사용법 1.md",
@@ -212,7 +205,6 @@
     "Javascript/렌더링 최적화.md",
     "Javascript/문서 객체 모델 DOM.md",
     "conflict-files-obsidian-git.md",
-    "적용기/next font 사용하여 로컬 파일 및 Google 폰트 적용하기.md",
     "_Modern React Deep Dive",
     "적용기",
     "AWS",
@@ -220,7 +212,6 @@
     "HTML",
     "Obsidian",
     "무제 파일.canvas",
-    "Daliy",
-    "Javascript"
+    "Daliy"
   ]
 }
