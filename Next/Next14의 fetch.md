@@ -1,6 +1,35 @@
-Next 14와 Next 13의 `fetch`함수 사용의 차이점
+### Next.14 fetch
+일단 사용한 코드부터 보겠습니다.
 
-### Ne
+```js
+async function getUser(id) {
+  const res = await fetch(`https://api.example.com/user/${id}`, {
+    next: { revalidate: 60 } // 60초마다 데이터 재검증
+  });
+  
+  if (!res.ok) throw new Error('Failed to fetch user');
+  return res.json();
+}
+
+export default async function UserProfile({ params }) {
+  const user = await getUser(params.id);
+  return <div>
+    <h1>{user.name}의 프로필</h1>
+    <p>이메일: {user.email}</p>
+  </div>
+}
+```
+
+#### Next 14 fetch 특징
+- 서버 컴포넌트에서 직접 `async/await`를 사용할 수 있다.
+- `fetch`함수는 **자동으로 결과를 캐시**한다.
+- `next : revalidate : 60` 옵션으로 60초마다 데이터를 재검증한다.
+- 아래와 같은 흐름이다.
+	- ![[Pasted image 20241021152721.png]]
+	- Next 서버가 외부 API에 `fetch` 요청을 보낸다.
+	- 외부 API가 데이터를 반환
+	- Next 서버가 데이터로 HTML을 렌더링하여 브라우저에 전송한다.
+	- 
 
 1. 자동 재검증(AUtomatic Revalidation)
 	- Next 14에서는 `fetch` 옵션에 `next.revalidate`를 사용하지 않아도 된다.
