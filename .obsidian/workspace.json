@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "12586f295e1fb1fd",
+        "id": "acaa406fa24d0188",
         "type": "tabs",
         "children": [
           {
-            "id": "b72ab1dd52d044ae",
+            "id": "e3c8b295452a2c12",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Next/Next14의 fetch.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "새 탭"
+              "title": "Next14의 fetch"
             }
           }
         ]
@@ -178,14 +182,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b72ab1dd52d044ae",
+  "active": "e3c8b295452a2c12",
   "lastOpenFiles": [
+    "_Interview/면접에서 useState만들었다..md",
     "Pasted image 20241015001421.png",
     "Pasted image 20241015163250.png",
     "Next/Next14의 fetch.md",
     "README.md",
     "React/용어 정리.md",
-    "_Interview/면접에서 useState만들었다..md",
     "Next",
     "_Interview/면접 준비 -기술 면접.md",
     "_Modern React Deep Dive/01장 - 리액트 개방를 위해 꼭 알아야 할 자바 스크립트.md",
