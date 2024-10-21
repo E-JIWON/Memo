@@ -1,5 +1,6 @@
 {
   "livePreview": true,
   "defaultViewMode": "source",
-  "showLineNumber": true
+  "showLineNumber": true,
+  "readableLineLength": false
 }

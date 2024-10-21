@@ -1,5 +1,10 @@
+1. 자동 요청 중복 제거
+   - 같은 URL과 옵션으로 여러번 `fetch`를 호출해도 자동으로 요청을 중복 제거한다.
+     
+	   - 
+- 
+
 ### Next.14 fetch
-일단 사용한 코드부터 보겠습니다.
 
 ```js
 async function getUser(id) {
