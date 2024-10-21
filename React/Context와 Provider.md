@@ -116,5 +116,14 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   );
 };
 ```
-🚀❓
-createContext에 대한 설명: `createContext`는 React의 Context API를 사용하기 위한 함수입니다. 이 함수는 컴포넌트 트리 전체에서 데이터를 공유할 수 있는 Context 객체를 생성합니다. 여기서는 OrderContextType 타입의 컨텍스트를 생성하고 있습니다.
+💡`createContext`가 뭐야 ?
+- React의 Context API를 사용하기 위한 함수이다.
+- 이 함수는 컴포넌트 트리 전체에서 데이터를 공유할 수 있는 Context 객체를 생성합니다.
+- 여기서는 OrderContextType 타입의 컨텍스트를 생성하고 있습니다.
+- ❓쉽게 말해서 `createContext`는 어플리케이션 전체에서 사용할 수 있는 '공유 저장소'를 만드는 함수이다.
+
+💡 갑자기 `OrderContext.Provider`가 어디서 나온거야?
+- `OrderContext.Provider`는 `createContext`로 생성된 컨텍스트 객체의 `Provider` 컴포넌트이다.
+- 이 컴포넌트는 자식 컴포넌트들에게 컨텍스트 값을 제공하는 역할을 한다.
+- `OrderContext`만으로는 값을 제공할 수 없고, 반드시 `.Provider`를 사용해야 합니다.
+- ❓ 쉽게 말해서 `OrderContext.Provider`는 우리가 만든 '공유 저장소'의 내용을 실제로 컴포넌트들에게 전달해주는 특별한 컴포넌트이다. 이걸 사용해야 다른 컴포넌트들이 우리가 공유하고 싶은 데이터에 접근할 수 있다.
