@@ -1,3 +1,4 @@
+
 Next.js 14가 출시되면서 데이터 `fetching` 방식에 큰 변화가 있다.
 이번 글에서는 Next.js14의 새로운 `fetch`기능을 살펴보고, 이전 버전 및 `React Query`와 비교해 보겠습니다.
 또한, Next.js 14 환경에서 React Query를 사용하는게 적절한가 ? 와 효과적으로 사용하는 방법에 대해서도 알아보겠습니다.
@@ -75,5 +76,36 @@ function MyComponent() {
 ```
 
 ### Next 14와 React Query 적절한 사용
-Next.js 14에서 데이터 fetching이 크게 개선되어, 많은 경우를 React Query를 대체할 수 있게 되었다.
 
+#### Next.js 14의 주요 특징
+Next.js 14에서 데이터 fetching이 크게 개선되어, 많은 경우를 React Query를 대체할 수 있게 되었다.
+- **자동 중복 제거**: 동일한 요청은 한 번만 실행됩니다.
+- **자동 캐싱**: 결과가 자동으로 캐시되어 성능이 향상됩니다.
+- **서버 컴포넌트 통합**: 서버에서 직접 데이터를 가져와 초기 로드 시간을 단축시킵니다.
+- **유연한 렌더링 전략**: `revalidate` 옵션으로 정적/동적 콘텐츠를 효과적으로 관리합니다.
+- **타입 안전성**: TypeScript와의 완벽한 통합으로 타입 관련 오류를 줄입니다.
+##### 💡 아 그럼 데이터 변경(mutate)의 경우도 되나요?
+```tsx
+'use server'
+
+async function updateData(newData) {
+  // 데이터 업데이트 로직
+  revalidatePath('/data')  // 특정 경로의 데이터 재검증
+}
+```
+하지만 Next.js 14만으로는 해결하기 어려운 시나리오가 있습니다:
+
+1. **복잡한 캐싱 전략**: 세밀한 캐시 무효화, 조건부 리fetching
+2. **실시간 데이터 업데이트**: 실시간 채팅, 라이브 피드 등
+3. **복잡한 데이터 동기화**: 오프라인 지원, 낙관적 업데이트
+4. **고급 로딩 상태 관리**: 무한 스크롤, 복잡한 페이지네이션
+5. **클라이언트/서버 상태 복합 관리**: 실시간 필터링, 고급 검색 기능
+
+이와 같은 경우는 React Ueryy 만의 갈정이 여전히 유호ㅛ하다.
+```jsx
+const { data, isLoading, error } = useQuery('userData', fetchUserData, {
+  staleTime: 5000,
+  cacheTime: 10 * 60 * 1000,
+  refetchOnWindowFocus: false,
+});
+```

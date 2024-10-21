@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Next/Next14의 fetch.md",
+                "file": "Next/Next.js 14의 fetch의 변화와 React Query와 적절하게 사용하기.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Next14의 fetch"
+              "title": "Next.js 14의 fetch의 변화와 React Query와 적절하게 사용하기"
             }
           },
           {
@@ -192,7 +192,7 @@
   "lastOpenFiles": [
     "Pasted image 20241021155952.png",
     "도구/Next 14 React-Query Next 13 다이어그램.md",
-    "Next/Next14의 fetch.md",
+    "Next/Next.js 14의 fetch의 변화와 React Query와 적절하게 사용하기.md",
     "도구",
     "Pasted image 20241021154442.png",
     "_TODO/TODO.md",
