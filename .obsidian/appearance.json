@@ -1,11 +1,11 @@
 {
   "theme": "moonstone",
   "accentColor": "#4f9674",
-  "cssTheme": "Typora-Vue",
-  "baseFontSize": 13,
+  "cssTheme": "Golden Topaz",
+  "baseFontSize": 15,
   "nativeMenus": false,
-  "interfaceFontFamily": "Gowun Batang,Comic Sans MS",
-  "textFontFamily": "Comic Sans MS,제주명조",
-  "monospaceFontFamily": "Comic Sans MS",
+  "interfaceFontFamily": "",
+  "textFontFamily": "제주명조",
+  "monospaceFontFamily": "",
   "baseFontSizeAction": true
 }
