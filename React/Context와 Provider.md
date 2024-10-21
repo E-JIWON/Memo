@@ -90,3 +90,31 @@ function CombinedProvider({ children }) {
 ```
 
 
+### 5. 키오스크 프로젝트 내 - OrderContext에 대해 자세히 뜯어보자.
+```jsx
+// orderContext.tsx
+'use client';
+
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+type OrderOption = 'dine-in' | 'takeout' | null;
+
+interface OrderContextType {
+  orderOption: OrderOption;
+  setOrderOption: (option: OrderOption) => void;
+}
+
+const OrderContext = createContext<OrderContextType | undefined>(undefined);
+
+export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [orderOption, setOrderOption] = useState<OrderOption>(null);
+
+  return (
+    <OrderContext.Provider value={{ orderOption, setOrderOption }}>
+      {children}
+    </OrderContext.Provider>
+  );
+};
+```
+🚀❓
+createContext에 대한 설명: `createContext`는 React의 Context API를 사용하기 위한 함수입니다. 이 함수는 컴포넌트 트리 전체에서 데이터를 공유할 수 있는 Context 객체를 생성합니다. 여기서는 OrderContextType 타입의 컨텍스트를 생성하고 있습니다.
