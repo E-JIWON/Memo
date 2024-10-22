@@ -196,7 +196,7 @@ export const fetcher = ky.create({
 - URL, header, timeout 기본 설정을 해준다. 
 	-> 공통으로 설정해두면 추후 유지 보수 할 때도 좋다.
 
-#### 만들어보자
+#### GET, SERVERGET, 공통(POST, PUT, DELETE) 을 만들어보자
 ```tsx
 // 타입 안정성 추가
 export const kyGet = async (url: string, config: Options = {}) => {
