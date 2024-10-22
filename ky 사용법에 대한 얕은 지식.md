@@ -199,29 +199,29 @@ export const fetcher = ky.create({
 #### GET, POST만 만들어보자
 ```tsx
 // 타입 안정성 추가
-export const kyGet = async <T>(url: string, config: Options = {}): Promise<T> => {
-  const data = await fetcher.get(url, config).json<T>();
+export const kyGet = async (url: string, config: Options = {}) => {
+  const data = await fetcher.get(url, config).json();
   return data;
 };
 
-export const kyServerGet = async <T>(
+export const kyServerGet = async(
   url: string,
   config: Options = { searchParams: {}, headers: {} }
-): Promise<T> => {
-  const data = await fetcher.get(url, config).json<T>();
+) => {
+  const data = await fetcher.get(url, config).json();
   return data;
 };
 
 type HttpMethod = 'post' | 'put' | 'delete';
 
-export const kyRequest = async <T>(
+export const kyRequest = async(
   method: HttpMethod,
   url: string,
   params: object | string = {},
   config: Options = {}
-): Promise<T> => {
+) => {
   try {
-    const data = await fetcher[method](url, { ...config, json: params }).json<T>();
+    const data = await fetcher[method](url, { ...config, json: params }).json();
     return data;
   } catch (error) {
     console.error(`${method.toUpperCase()} request failed:`, error);
