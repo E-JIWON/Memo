@@ -168,35 +168,49 @@ try {
 ### 실제 프로젝트에서의 활용 - 최소한의 필수 요소만 포함한 공통 fetcher
 #### ky.create를 사용해서 공통 설정 하기
 ```js
-// lib/fetcher.ts
-import ky from 'ky';
-
-// 1. 공통으로 사용할 ky 인스턴스 생성 - 필수 설정만 포함
+// 1. 공통으로 사용할 ky 인스턴스 생성
 const api = ky.create({
-  prefixUrl: process.env.NEXT_PUBLIC_API_URL,  // 환경변수에서 API URL 가져오기
-  timeout: 10000,                              // 적절한 타임아웃 설정
+  prefixUrl: process.env.NEXT_PUBLIC_API_URL,
+  timeout: 10000,
   headers: {
-    'Content-Type': 'application/json'         // 기본 헤더
+    'Content-Type': 'application/json'
+  },
+  hooks: {
+    // 요청 전 실행
+    beforeRequest: [
+      request => {
+        console.log("응답 전 실행");
+      }
+    ],
+    // 응답 후 실행
+    afterResponse: [
+      async (request, options, response) => {
+	      console.log("응답 후 실행");
+	      consle.log("request", request);
+	      consle.log("response", response);
+        return response;
+      }
+    ]
   }
 });
 ```
-- URL, header, timeout 기본설정을 해준다. 
+- URL, header, timeout 기본 설정을 해준다. 
 	-> 공통으로 설정해두면 추후 유지 보수 할 때도 좋다.
 
-
+#### GET, POST만 만들어보자~
 ```js
-// 2. GET 요청 함수 - 타입 안정성 보장
+// 2. GET 요청 함수
 export const getData = async <T>(endpoint: string) => {
   try {
     const response = await api.get(endpoint).json<T>();
     return response;
   } catch (error) {
     console.error('Get request failed:', error);
-    throw error;  // 에러 처리는 사용하는 쪽에서 결정
+    throw error;
   }
 };
 
-// 3. POST 요청 함수 - 간단하고 재사용 가능
+// 3. POST 요청 함수
 export const postData = async <T>(endpoint: string, data: any) => {
   try {
     const response = await api.post(endpoint, {
@@ -209,3 +223,5 @@ export const postData = async <T>(endpoint: string, data: any) => {
   }
 };
 ```
+
+#### 요청을 보내보자 
