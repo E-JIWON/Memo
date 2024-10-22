@@ -1,5 +1,5 @@
 
-### 1. 일반 패치와 기본 사용법 비교
+### 1. fetch()와 ky  기본 사용법 비교
 ```js
 // 일반 fetch 사용시
 const response = await fetch('https://api.example.com/users', {
@@ -47,7 +47,7 @@ async function fetchWithConfig(endpoint, options = {}) {
 ```
 
 #### 2. ky에서 사용되는 hooks 비교
-아래 내용은 요청 전에  token 확인 후 header에 set하는 내용과, 응답 후에
+아래 내용은 요청 전에 실행되는 훅(코드 내용 - token 확인 후 header에 set)과, 응답 후에 실행되는 훅(401일 경우 token 삭제 후 /login)을 fetch로 했을 때 비교이다.
 ```js
 // ky의 hooks
 const api = ky.create({
@@ -103,7 +103,7 @@ async function fetchWithInterceptor(endpoint, options = {}) {
   }
 }
 ```
-
+- ky는 ~특징이 있어서 ~  설명
 
 ### 3. ky의 주요 특징들
 ```js
@@ -144,4 +144,74 @@ try {
     console.log(error.response.status);
   }
 }
+```
+
+#### ky.create 이점
+```js
+// 인스턴스 생성 시 공통 설정
+const api = ky.create({
+  prefixUrl: 'https://api.example.com',  // 기본 URL 설정
+  headers: {
+    'Authorization': 'Bearer token'      // 공통 헤더
+  },
+  timeout: 5000                         // 공통 타임아웃
+});
+
+// 이제 짧게 사용 가능
+await api.post('users', {
+  json: { name: 'John' }
+});
+
+await api.post('posts', {
+  json: { title: 'Hello' }
+});
+
+// 공통 설정은 유지되면서 특별한 설정도 추가 가능
+await api.post('special', {
+  json: { data: 'unique' },
+  headers: {
+    'Special-Header': 'value'  // 기존 Authorization 헤더는 유지됨
+  }
+});
+```
+- 위 방식처럼 인스턴스 만들어서 사용할 경우
+	- 동일한 코드 감소, 설정 관리 편함, 실수 방지(URL이나 헤더 누락 등), 변경사항 적용이 쉬움(URL 바뀔 경우 한 곳 수정)
+
+### 필수 요소만 넣어 공통 fetcher 만들기
+```js
+// lib/fetcher.ts
+import ky from 'ky';
+
+// 1. 공통으로 사용할 ky 인스턴스 생성 (필수 설정만)
+const api = ky.create({
+  prefixUrl: process.env.NEXT_PUBLIC_API_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+// 2. GET 요청 함수
+export const getData = async <T>(endpoint: string) => {
+  try {
+    const response = await api.get(endpoint).json<T>();
+    return response;
+  } catch (error) {
+    console.error('Get request failed:', error);
+    throw error;
+  }
+};
+
+// 3. POST 요청 함수
+export const postData = async <T>(endpoint: string, data: any) => {
+  try {
+    const response = await api.post(endpoint, {
+      json: data
+    }).json<T>();
+    return response;
+  } catch (error) {
+    console.error('Post request failed:', error);
+    throw error;
+  }
+};
 ```
