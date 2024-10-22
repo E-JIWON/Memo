@@ -196,7 +196,7 @@ export const fetcher = ky.create({
 - URL, header, timeout 기본 설정을 해준다. 
 	-> 공통으로 설정해두면 추후 유지 보수 할 때도 좋다.
 
-#### GET, SERVERGET, 공통(POST, PUT, DELETE) 을 만들어보자
+#### GET, SERVERGET, 나머지(POST/PUT/DELETE) 공통
 ```tsx
 // 타입 안정성 추가
 export const kyGet = async (url: string, config: Options = {}) => {
@@ -230,11 +230,35 @@ export const kyRequest = async(
 };
 ```
 1. `kyGet`과 `kyServerGet`을 분리한 이유
-2. 
-#### 요청을 보내보자
+	- 서버 컴포넌트와 클라이언트 컴포넌트에서 필요한 설정이 다를 수 있음
+	- 서버에서는 특별한 헤더나 인증이 필요할 수 있음
+	- TypeScript로 각 환경에 맞는 타입 체크 가능
+	- 실수로 서버용 코드를 클라이언트에서 사용하는 것을 방지
+
+2. `kyGet`과 나머지 메서드(POST/PUT/DELETE)를 분리한 이유
+	- GET 요청은 body가 없고 주로 쿼리 파라미터를 사용
+	- POST/PUT/DELETE는 body 데이터가 필요한 경우가 많음
+	- 용도에 따라 파라미터 구조가 다름
+#### 코드 사용 예시
 ```js
-const getUser = async (id: string) => {
-  const user = await getData<User>(`/users/${id}`);
-  return user;
-};
+// 서버 컴포넌트
+async function ServerComponent() {
+  // 서버 전용 설정이 포함된 GET
+  const data = await kyServerGet('/api/data', {
+    headers: {
+      'Server-Secret': process.env.SECRET
+    }
+  });
+}
+
+// 클라이언트 컴포넌트
+function ClientComponent() {
+  // 일반 GET
+  const fetchData = () => kyGet('/api/data');
+  
+  // POST/PUT/DELETE
+  const submitData = () => kyRequest('post', '/api/data', { 
+    name: 'test' 
+  });
+}
 ```
