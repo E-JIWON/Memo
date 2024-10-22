@@ -1,5 +1,7 @@
 
-### 1. fetch()와 ky  기본 사용법 비교
+### 1. fetch와 ky 기본 사용법 비교
+일반 `fetch`와 `ky`의 가장 큰 차이점은 사용 편의성이다.
+
 ```js
 // 일반 fetch 사용시
 const response = await fetch('https://api.example.com/users', {
@@ -7,7 +9,7 @@ const response = await fetch('https://api.example.com/users', {
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({ name: 'John' })
+  body: JSON.stringify({ name: 'John' }) // 데이터를 직접 문자열로 변환 해야 한다.
 });
 const data = await response.json();
 
@@ -15,13 +17,20 @@ const data = await response.json();
 import ky from 'ky';
 
 const data = await ky.post('https://api.example.com/users', {
-  json: { name: 'John' }
-}).json();
+  json: { name: 'John' } // 자동으로 JSON 변환
+}).json(); // 메서드 체이닝으로 간단하게 JSON  변환이 가능하다.
 ```
-- 이유랑 자세한 내용 설명 필요할 것으로 보임
+
+`ky` 사용 시 이점
+1. JSON 데이터 자동 변환 (`JSON.stringify` 불필요)
+2. 깔끔한 메서드 체이닝
+3. 타입스크립트 지원이 잘 되어있음
+4. 기본적인 에러 처리 제공
 
 ### 2. 기본 설정 세팅 비교
 #### 1. 기본 설정 부분 비교
+`fetch`와 `ky`의 기본 설정 방식 비교
+
 ```js
 // ky 설정
 const api = ky.create({
@@ -45,11 +54,12 @@ async function fetchWithConfig(endpoint, options = {}) {
   return Promise.race([response, timeoutPromise]);
 }
 ```
-
-#### 2. ky에서 사용되는 hooks 비교
-아래 내용은 요청 전에 실행되는 훅(코드 내용 - token 확인 후 header에 set)과, 응답 후에 실행되는 훅(401일 경우 token 삭제 후 /login)을 fetch로 했을 때 비교이다.
+- ky는 타임아웃 같은 기능이 내장되어 있음
+- fetch는 기본적인 기능도 직접 구현해야 하는 경우가 많음
+#### 2. hooks(인터셉터) 비교
+ky의 가장 강력한 기능 중 하나는 hooks 시스템이다.
 ```js
-// ky의 hooks
+// ky의 hooks - 깔끔하고 모듈화된 방식
 const api = ky.create({
   hooks: {
     // 요청 전에 실행되는 훅
@@ -74,9 +84,12 @@ const api = ky.create({
   }
 });
 
-// fetch로 구현한다면
+// fetch로 구현시 - 모든 로직을 한 함수에 넣어야 함
 async function fetchWithInterceptor(endpoint, options = {}) {
-  // beforeRequest 로직
+// beforeRequest 로직과 afterResponse 로직이 
+// 하나의 함수에 혼재되어 있어 유지보수가 어려움
+
+// beforeRequest
   const token = localStorage.getItem('token');
   const headers = {
     'Content-Type': 'application/json',
@@ -103,9 +116,14 @@ async function fetchWithInterceptor(endpoint, options = {}) {
   }
 }
 ```
-- ky는 ~특징이 있어서 ~  설명
 
-### 3. ky의 주요 특징들
+ky의 hooks 시스템의 장점
+- 요청 전/후 로직을 명확하게 분리
+- 모듈화된 구조로 유지보수 용이
+- 여러 개의 훅을 배열로 관리 가능
+- 코드의 가독성이 높음
+
+#### 3. ky의 주요 특징들
 ```js
 // 1. 기본 인스턴스 생성
 const api = ky.create({
