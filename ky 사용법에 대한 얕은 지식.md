@@ -229,7 +229,8 @@ export const kyRequest = async(
   }
 };
 ```
-
+1. `kyGet`과 `kyServerGet`을 분리한 이유
+2. 
 #### 요청을 보내보자
 ```js
 const getUser = async (id: string) => {
