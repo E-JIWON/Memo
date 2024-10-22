@@ -48,9 +48,23 @@
               "icon": "lucide-file",
               "title": "무제 파일 1"
             }
+          },
+          {
+            "id": "9aea636fb76f9c8a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ky 라이브러리 사용기.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ky 라이브러리 사용기"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -203,10 +217,11 @@
       "obsidian-kanban:새 보드 만들기": false
     }
   },
-  "active": "d3ba48a0eb315fea",
+  "active": "9aea636fb76f9c8a",
   "lastOpenFiles": [
-    "Next/Next.js14 Axios 갖다 버리기.md",
     "무제 파일 1.md",
+    "ky 라이브러리 사용기.md",
+    "Next/Next.js14 Axios 갖다 버리기.md",
     "Next/Next.js 14의 fetch의 변화.md",
     "Pasted image 20241021155952.png",
     "도구/Next 14 React-Query Next 13 다이어그램.md",
@@ -240,7 +255,6 @@
     "Javascript/클로저.md",
     "Javascript/이벤트 루프.md",
     "HTML/웹 접근성.md",
-    "HTML/검색 엔진 최적화.md",
     "_Modern React Deep Dive",
     "적용기",
     "AWS",
