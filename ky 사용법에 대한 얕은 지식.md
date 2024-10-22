@@ -169,59 +169,71 @@ try {
 #### ky.create를 사용해서 공통 설정 하기
 ```js
 // 1. 공통으로 사용할 ky 인스턴스 생성
-const api = ky.create({
+export const fetcher = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_API_URL,
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   hooks: {
-    // 요청 전 실행
     beforeRequest: [
-      request => {
+      async (request) => {
         console.log("응답 전 실행");
-      }
+      },
     ],
-    // 응답 후 실행
     afterResponse: [
       async (request, options, response) => {
 	      console.log("응답 후 실행");
-	      consle.log("request", request);
-	      consle.log("response", response);
         return response;
-      }
-    ]
-  }
+      },
+    ],
+  },
 });
+
+
+
 ```
 - URL, header, timeout 기본 설정을 해준다. 
 	-> 공통으로 설정해두면 추후 유지 보수 할 때도 좋다.
 
-#### GET, POST만 만들어보자~
-```js
-// 2. GET 요청 함수
-export const getData = async <T>(endpoint: string) => {
-  try {
-    const response = await api.get(endpoint).json<T>();
-    return response;
-  } catch (error) {
-    console.error('Get request failed:', error);
-    throw error;
-  }
+#### GET, POST만 만들어보자
+```tsx
+// 타입 안정성 추가
+export const kyGet = async <T>(url: string, config: Options = {}): Promise<T> => {
+  const data = await fetcher.get(url, config).json<T>();
+  return data;
 };
 
-// 3. POST 요청 함수
-export const postData = async <T>(endpoint: string, data: any) => {
+export const kyServerGet = async <T>(
+  url: string,
+  config: Options = { searchParams: {}, headers: {} }
+): Promise<T> => {
+  const data = await fetcher.get(url, config).json<T>();
+  return data;
+};
+
+type HttpMethod = 'post' | 'put' | 'delete';
+
+export const kyRequest = async <T>(
+  method: HttpMethod,
+  url: string,
+  params: object | string = {},
+  config: Options = {}
+): Promise<T> => {
   try {
-    const response = await api.post(endpoint, {
-      json: data
-    }).json<T>();
-    return response;
+    const data = await fetcher[method](url, { ...config, json: params }).json<T>();
+    return data;
   } catch (error) {
-    console.error('Post request failed:', error);
+    console.error(`${method.toUpperCase()} request failed:`, error);
     throw error;
   }
 };
 ```
 
-#### 요청을 보내보자 
+#### 요청을 보내보자
+```js
+const getUser = async (id: string) => {
+  const user = await getData<User>(`/users/${id}`);
+  return user;
+};
+```
