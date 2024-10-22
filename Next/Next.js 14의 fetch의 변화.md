@@ -1,6 +1,5 @@
 Next.js 14가 출시되면서 데이터 `fetching` 방식에 큰 변화가 생겼다.
-이번 글에서는 Next.js 14의 새로운 `fetch`기능을 살펴보고, 이전 버전 과 React Query와 비교해 본다.
-또한, Next.js 14 환경에서 React Query를 사용하는 것이 적절한지와 효과적인 사용 방법에 대해서도 알아본다.
+이번 글에서는 Next.js 14의 새로운 `fetch`기능을 살펴볼거다.
 
 ### 1. Next.js 13, Next.js 14 fetch 비교
 ```mermaid
