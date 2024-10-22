@@ -123,9 +123,9 @@ ky의 hooks 시스템의 장점
 - 여러 개의 훅을 배열로 관리 가능
 - 코드의 가독성이 높음
 
-#### 3. ky의 주요 특징들
+### 3. ky의 주요 특징들 모아보기
 ```js
-// 1. 기본 인스턴스 생성
+// 1. 기본 인스턴스 생성 - 공통 설정을 한 번에!
 const api = ky.create({
   prefixUrl: 'https://api.example.com',  // 기본 URL 설정
   timeout: 5000,                         // 타임아웃 설정
@@ -134,13 +134,13 @@ const api = ky.create({
   }
 });
 
-// 2. HTTP 메서드들
+// 2. HTTP 메서드들 - 직관적인 메서드명
 await ky.get(url);      // GET 요청
 await ky.post(url);     // POST 요청
 await ky.put(url);      // PUT 요청
 await ky.delete(url);   // DELETE 요청
 
-// 3. 요청 옵션 예시
+// 3. 요청 옵션 예시 - 다양한 옵션을 객체로 깔끔하게 전달
 const response = await ky.post('users', {
   json: { name: 'John' },           // 자동으로 JSON 변환
   searchParams: { type: 'admin' },  // URL 파라미터 추가
@@ -148,7 +148,7 @@ const response = await ky.post('users', {
   retry: 2                          // 실패시 재시도 횟수
 });
 
-// 4. 응답 처리
+// 4. 응답 처리 - 다양한 응답 형식 지원
 const jsonData = await response.json();          // JSON으로 파싱
 const textData = await response.text();          // 텍스트로 받기
 const blobData = await response.blob();          // 파일 등의 바이너리 데이터
@@ -164,63 +164,39 @@ try {
 }
 ```
 
-#### ky.create 이점
-```js
-// 인스턴스 생성 시 공통 설정
-const api = ky.create({
-  prefixUrl: 'https://api.example.com',  // 기본 URL 설정
-  headers: {
-    'Authorization': 'Bearer token'      // 공통 헤더
-  },
-  timeout: 5000                         // 공통 타임아웃
-});
 
-// 이제 짧게 사용 가능
-await api.post('users', {
-  json: { name: 'John' }
-});
-
-await api.post('posts', {
-  json: { title: 'Hello' }
-});
-
-// 공통 설정은 유지되면서 특별한 설정도 추가 가능
-await api.post('special', {
-  json: { data: 'unique' },
-  headers: {
-    'Special-Header': 'value'  // 기존 Authorization 헤더는 유지됨
-  }
-});
-```
-- 위 방식처럼 인스턴스 만들어서 사용할 경우
-	- 동일한 코드 감소, 설정 관리 편함, 실수 방지(URL이나 헤더 누락 등), 변경사항 적용이 쉬움(URL 바뀔 경우 한 곳 수정)
-
-### 필수 요소만 넣어 공통 fetcher 만들기
+### 실제 프로젝트에서의 활용 - 최소한의 필수 요소만 포함한 공통 fetcher
+#### ky.create를 사용해서 공통 설정 하기
 ```js
 // lib/fetcher.ts
 import ky from 'ky';
 
-// 1. 공통으로 사용할 ky 인스턴스 생성 (필수 설정만)
+// 1. 공통으로 사용할 ky 인스턴스 생성 - 필수 설정만 포함
 const api = ky.create({
-  prefixUrl: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 10000,
+  prefixUrl: process.env.NEXT_PUBLIC_API_URL,  // 환경변수에서 API URL 가져오기
+  timeout: 10000,                              // 적절한 타임아웃 설정
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json'         // 기본 헤더
   }
 });
+```
+- URL, header, timeout 기본설정을 해준다. 
+	-> 공통으로 설정해두면 추후 유지 보수 할 때도 좋다.
 
-// 2. GET 요청 함수
+
+```js
+// 2. GET 요청 함수 - 타입 안정성 보장
 export const getData = async <T>(endpoint: string) => {
   try {
     const response = await api.get(endpoint).json<T>();
     return response;
   } catch (error) {
     console.error('Get request failed:', error);
-    throw error;
+    throw error;  // 에러 처리는 사용하는 쪽에서 결정
   }
 };
 
-// 3. POST 요청 함수
+// 3. POST 요청 함수 - 간단하고 재사용 가능
 export const postData = async <T>(endpoint: string, data: any) => {
   try {
     const response = await api.post(endpoint, {
